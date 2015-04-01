@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>PNG TMS7 Viewer 3D Hello World</title>
+<meta charset=utf-8 />
+<meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script>
+
+	var zoom = 7;
+	var tileX = 20;
+	var tileY = 49;
+
+	var srcDir = '../../../terrain-srtm30-plus-data-tms-7+/' + '7+' + '/';
+
+	var info, stats, renderer, scene, camera, controls;
+	var geometry, material, mesh;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css = document.head.appendChild( document.createElement('style') );
+		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' ;
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = 'margin: 20px; position: absolute; ';
+		info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
+			'<div id=msg ></div>' +
+//			'<img id=heightMap onload=initCanvas(); /><br>' +
+		'';
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
+		document.body.appendChild( stats.domElement );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+		scene = new THREE.Scene();
+
+// axes
+		var axisHelper = new THREE.AxisHelper( 50 );
+		scene.add( axisHelper );
+
+// sea level
+		geometry = new THREE.PlaneBufferGeometry( 256, 256 );
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+		material = new THREE.MeshNormalMaterial( { opacity: 0.5, side: 2, transparent: true } );
+		seaMesh = new THREE.Mesh( geometry, material );
+		scene.add( seaMesh );
+
+		heightMap = document.createElement( 'img' );
+		heightMap.onload = initCanvas;
+		heightMap.src = srcDir + tileX + '/' + tileY + '.png';
+
+	}
+
+	function initCanvas() {
+
+//		canvasHeightMap = document.body.appendChild( document.createElement( 'canvas' ) );
+//		canvasHeightMap.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 400px; z-index: 10; ';
+
+		canvasHeightMap = document.createElement( 'canvas' );
+		canvasHeightMap.width = canvasHeightMap.height =  256;
+		contextHeightMap = canvasHeightMap.getContext( '2d' );
+
+		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 256, 256 );
+		var image = contextHeightMap.getImageData( 0, 0, 256, 256 );
+
+		var rgb = image.data;
+
+		var geometry = new THREE.PlaneGeometry( 256, 256, 255, 255 );
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0.5 * Math.PI ) );
+		var vertices = geometry.vertices;
+		var elevation;
+
+		var scl = 0.008;
+
+		for ( var i = 0, j = 0; i < rgb.length; i += 4, j++) {
+
+			elevation = rgb[ i ] + 256 * rgb[ i + 1 ] + 65536 * rgb[ i + 2 ] ;
+
+			elevation = elevation < 32767 ? elevation : elevation - 16777216;
+			elevation  = elevation < -15000 ? 0 : elevation ;
+
+			vertices[ j ].y = scl * elevation ;
+
+		}
+
+		geometry.computeFaceNormals();
+		geometry.computeVertexNormals();
+		var material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
+
+		var mesh = new THREE.Mesh( geometry, material );
+		mesh.scale.z = -1;
+		scene.add( mesh );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>
