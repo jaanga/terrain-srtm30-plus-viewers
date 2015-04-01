@@ -1,4 +1,4 @@
-[Jaanga]( ../../index.html ) &raquo; [Terrain SRTM 30 Plus]( ../index.html ) &raquo;
+[Jaanga]( ../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM 30 Plus]( ../terrain-srtm30-plus-r2/terrain-srtm30-plus.html )
 [Viewers]( terrain-srtm30-plus-viewers.html )
 ===
 
@@ -9,20 +9,20 @@
 
 ## Introduction (open)
 
-lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+A variety of apps able to open and display the SRTM30 plus data.
 
 ## 3D Features (open)
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( ./png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
 
-lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+A full featured viewer. Start here to explore the possibilities
 
-
-## 3DHello World
+## 3D Hello World (open)
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( ./png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+Very simple, basic code. Stat here to see how simple it is to start coding.
+
 
 ## Bitmap
 
