@@ -1,4 +1,4 @@
-[Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../../../index.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
+[Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
 [PNG TMS7 Viewer 3D]( png-tms7-viewer-3d.html )
 ===
 
