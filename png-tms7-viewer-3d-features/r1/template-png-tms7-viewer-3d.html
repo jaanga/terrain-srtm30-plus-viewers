@@ -149,8 +149,10 @@
 //		heightMap = document.body.appendChild( document.createElement( 'img' ) );
 //		heightMap.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 400px; z-index: 10; ';
 
-		heightMap = new Image();
 //		heightMap = document.createElement( 'img' );
+
+		heightMap = new Image();
+		heightMap.crossOrigin = 'Anonymous';
 		heightMap.onload = initCanvas;
 
 		canvasSRTM = parent.heightMapHolder.appendChild( document.createElement( 'canvas' ) );
@@ -161,7 +163,8 @@
 
 		if ( zoom === 7 ) {
 
-			srcDir = '../../../terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
+//			srcDir = '../../../terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
+			srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
 		} else  {
 
@@ -192,7 +195,8 @@
 
 			if ( zoom === 7 ) {
 
-				srcDir = 'C:/temp/srtm-png-test/' + '7plus' + '/';
+//				srcDir = 'C:/temp/srtm-png-test/' + '7plus' + '/';
+				srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
 			} else  {
 
@@ -213,7 +217,8 @@
 
 	function getGazetteerGolembek() {
 
-		var data = requestGazetteer( '../../../terrain-plus/gazetteer/places-2000.csv' );
+//		var data = requestGazetteer( '../../../terrain-plus/gazetteer/places-2000.csv' );
+		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/places-2000.csv' );
 		var xmlHttp;
 
 		function requestGazetteer( fileName ) {
@@ -268,7 +273,8 @@
 
 	function getGazetteerGEBCO() {
 
-		var data = requestGazetteer( '../../../terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
+//		var data = requestGazetteer( '../../../terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
+		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
 		var xmlHttp;
 
 		function requestGazetteer( fileName ) {
@@ -451,6 +457,7 @@ console.log( 'p', p );
 		sprite.position.set( x, y, z ) ;
 		sprite.scale.set( scale * texture.image.width, scale * texture.image.height );
 		return sprite;
+
 	}
 
 
@@ -543,7 +550,9 @@ console.log( 'p', p );
 		canvasLocation.onclick = onMapClick;
 		contextLocation = canvasLocation.getContext( '2d' );
 
-		var dir = '../../../terrain-plus/samples-png/';
+//		var dir = '../../../terrain-plus/samples-png/';
+		var dir = 'http://jaanga.github.io/terrain-plus/samples-png/';
+
 
 		loadImage( '1-0-0.png', 0, 0 );
 		loadImage( '1-1-0.png', half, 0 );
@@ -553,6 +562,7 @@ console.log( 'p', p );
 		function loadImage( fileName, x, y ) {
 
 			var img = document.createElement( 'img' );
+			img.crossOrigin = 'Anonymous';
 			img.src = dir + fileName;
 
 			img.onload = function(){
