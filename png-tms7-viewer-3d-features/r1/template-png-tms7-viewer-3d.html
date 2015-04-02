@@ -11,7 +11,6 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
 
-
 	var selectedLocation = 'San Francisco CA';
 	var zoom = 7;
 
@@ -195,12 +194,12 @@
 
 			if ( zoom === 7 ) {
 
-//				srcDir = 'C:/temp/srtm-png-test/' + '7plus' + '/';
+//				srcDir = '../../../terrain-srtm30-plus-data-tms-7plus' + '/';
 				srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
 			} else  {
-
-				srcDir = 'C:/temp/srtm-png-test/' + zoom + '/';
+//				srcDir = '../../../terrain-srtm30-plus-data-tms-1-7/' + zoom + '/';
+				srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-1-7/' + zoom + '/';
 
 			}
 
@@ -208,7 +207,6 @@
 			tileY = lat2tile( 37.796, zoom );
 
 			getHeightMapSrc( srcDir + tileX + '/' + tileY + '.png', true );
-
 
 		}
 
@@ -265,6 +263,8 @@
 				getHeightMapSrc(  srcDir + tileX + '/' + tileY + '.png', true );
 
 			};
+
+			setPlacards();
 
 		}
 
@@ -330,6 +330,8 @@
 
 			parent.selPlace.selectedIndex = 0;
 
+			setPlacards();
+
 		}
 
 	}
@@ -357,9 +359,10 @@
 
 	function setPlacards() {
 
+// console.log( 'placards', gazetteer, parent.inpPlacards.checked );
 		scene.remove( placards );
 
-		if ( !parent.inpPlacards.checked ) return;
+		if ( !gazetteer || !parent.inpPlacards.checked ) return;
 
 		placards = new THREE.Object3D();
 
@@ -442,7 +445,7 @@ console.log( 'p', p );
 
 */
 
-			elevation  = elevation < -11000 ? 0 : elevation ; // Marianas trench
+			elevation  = elevation < -11000 || elevation > 9000 ? 0 : elevation ; // Marianas trench
 
 		return elevation;
 
@@ -836,9 +839,9 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 		parent.msg2.innerHTML =  'Load time in ms: ' + ( new Date() - startTime );
 
-		if ( gazetteer && parent.inpPlacards.checked ) { setPlacards(); }
-
 		setLocationMapTarget();
+
+		setPlacards();
 
 	}
 
@@ -916,7 +919,6 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 		}
 
-
 	}
 
 
@@ -958,6 +960,7 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 	}
 
+
 	function lat2tile( lat, zoom ) {
 
 		var pi = Math.PI
@@ -965,11 +968,13 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 	}
 
+
 	function tile2lon( x, zoom ) {
 
 		return ( x / Math.pow( 2, zoom ) * 360 - 180 );
 
 	}
+
 
 	function tile2lat( y, zoom ) {
 
@@ -979,7 +984,9 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 	}
 
+
 	function v( x, y, z ){ return new THREE.Vector3( x, y, z ); }
+
 
 	function animate() {
 		requestAnimationFrame( animate );
