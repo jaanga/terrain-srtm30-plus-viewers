@@ -9,7 +9,7 @@
 <script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js ></script>
 <script>
 
-	var header, menu;
+	var header, menu, content;
 
 	init();
 
@@ -21,7 +21,7 @@
 		css.innerHTML = 'body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
 			'h1 { margin: 0; }' +
 			'h1 a, #bars { text-decoration: none; }' +
-			'h2 { background-color: #f8f8f8; padding: 0 5px; }' +
+//			'h2 { background-color: #f8f8f8; padding: 0 5px; }' +
 			'h2.close::before { content: "► "; }' +
 			'h2.open::before { content: "▼ "; }' +
 			'#bars { color: #ccc; }' +
@@ -37,7 +37,9 @@
 
 		loadMarkdownInMenu( 'terrain-srtm30-plus-viewers-menu.md', menu );
 
-		loadMarkdownInIframe( '#readme.md#' );
+//		loadMarkdownInIframe( '#readme.md#' );
+
+		loadMarkdownInDiv( 'readme.md' );
 
 //		slideMenu();
 
@@ -45,11 +47,13 @@
 
 	}
 
+
 	function slideMenu(){
 
 		header.style.left = header.style.left === '20px' ? '350px' : '20px';
 
 	}
+
 
 	function onHashChange() {
 
@@ -73,6 +77,7 @@
 
 	}
 
+
 	function loadHTMLInIframe( hash, callback ) {
 
 		ifr = resetIframe( callback );
@@ -92,43 +97,52 @@
 
 		function callback() {
 
-			text = xmlHttp.responseText;
+			if ( xmlHttp.readyState === 4  ) {
 
-			panel.innerHTML = converter.makeHtml( text );
+				text = xmlHttp.responseText;
 
-			items = document.body.getElementsByTagName( 'h2' );
+				panel.innerHTML = converter.makeHtml( text );
 
-			for ( var i = 0; i < items.length; i++ ) {
+				items = document.body.getElementsByTagName( 'h2' );
 
-				items[ i ].id = 't' + i;
+				for ( var i = 0; i < items.length; i++ ) {
 
-				if ( items[ i ].innerHTML.indexOf( '(open)' ) === -1 ) {
+					items[ i ].id = 't' + i;
 
-					items[ i ].className += ' close';
-					item = items[ i ].nextElementSibling;
+					if ( items[ i ].innerHTML.indexOf( '(open)' ) === -1 ) {
 
-					while ( item && item.tagName !== 'H2' ) {
+						items[ i ].style.cssText +=  'background-color: #f8f8f8; padding: 0 5px;' ;
 
-						item.style.display = 'none';
-						item = item.nextElementSibling;
+						items[ i ].className += ' close';
+						item = items[ i ].nextElementSibling;
 
-					} 
+						while ( item && item.tagName !== 'H2' ) {
 
-				} else {
+							item.style.display = 'none';
+							item = item.nextElementSibling;
 
-					items[ i ].className += ' open';
-					items[ i ].innerHTML = items[ i ].innerHTML.replace( '(open)','' );
+						} 
 
+					} else {
+
+						items[ i ].className += ' open';
+						items[ i ].innerHTML = items[ i ].innerHTML.replace( '(open)','' );
+
+
+					}
+
+					items[ i ].onclick = function() { toggle( this ); };
 
 				}
-
-				items[ i ].onclick = function() { toggle( this ); };
 
 			}
 
 		}
 
 	}
+
+
+
 
 	function toggle( element ) {
 
@@ -158,6 +172,40 @@
 		}
 
 	}
+
+
+	function loadMarkdownInDiv( fileName ) {
+
+		var converter = new Showdown.converter();
+
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( 'GET', fileName, true );
+		xmlHttp.onreadystatechange = callbackDiv;
+		xmlHttp.send( null );
+
+		function callbackDiv() {
+
+			if ( xmlHttp.readyState === 4  ) {
+
+				var text = xmlHttp.responseText;
+
+				if ( !content || !content.innerHTML ) {
+
+					content = document.body.appendChild( document.createElement( 'div' ) );
+					content.style.cssText = 'border: 0px solid red; font: bold 12pt monospace; left: 350px; margin: 20px auto; position: absolute; ' +
+						'right: 0; max-width: 800px; ' +
+					'';
+
+				} 
+
+				content.innerHTML = converter.makeHtml( text );
+
+			}
+
+		}
+
+	}
+
 
 	function loadMarkdownInIframe( hash, callback ) {
 
@@ -209,6 +257,8 @@
 	};
 
 	function resetIframe( callback ) {
+
+		if ( content && content.innerHTML ) { content.innerHTML = ''; }
 
 		var iframes = document.getElementsByTagName( 'iframe' );
 

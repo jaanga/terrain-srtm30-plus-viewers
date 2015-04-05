@@ -2,8 +2,8 @@
 [Viewers]( terrain-srtm30-plus-viewers.html )
 ===
 
-[GitHub web page]( http://va3c.github.io/viewer/va3c-hacker-cookbook/templates/left-side-hackette/index-left-side-hackette.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" >  
-&raquo; [GitHub source code]( https://github.com/va3c/viewer/tree/gh-pages/va3c-hacker-cookbook/templates/left-side-hackette/ "View files with GitHub" ) <scan style=display:none ><< You are here</scan>  
+[GitHub web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" >  
+&raquo; [GitHub source code]( https://github.com/jaanga/terrain-srtm30-plus-viewers/ "View files with GitHub" ) <scan style=display:none ><< You are here</scan>  
 
 [Read Me]( #readme.md# )
 
