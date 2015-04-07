@@ -178,15 +178,16 @@
 
 	function getZoom() {
 
-		var levels = [ ['level 3', 3 ],['level 4', 4 ], ['level 5', 5 ], [ 'level 6', 6 ],[ 'level 7+', 7 ] ];
+		var levels = [ ['level 1', 1 ], ['level 2', 2 ], ['level 3', 3 ], ['level 4', 4 ], ['level 5', 5 ], [ 'level 6', 6 ],[ 'level 7+', 7 ] ];
 
 		for ( var i = 0; i < levels.length; i++ ) {
 
 			parent.selZoom.appendChild( document.createElement( 'option' ) );
 			parent.selZoom.children[ i ].text = levels[ i ][ 0 ];
+
 		}
 
-		parent.selZoom.selectedIndex = 3;
+		parent.selZoom.selectedIndex = 6;
 
 		parent.selZoom.onchange = function() {
 
@@ -203,8 +204,8 @@
 
 			}
 
-			tileX = lon2tile( -122.398, zoom );
-			tileY = lat2tile( 37.796, zoom );
+			tileX = lon2tile( lonDefault, zoom );
+			tileY = lat2tile( latDefault, zoom );
 
 			getHeightMapSrc( srcDir + tileX + '/' + tileY + '.png', true );
 
