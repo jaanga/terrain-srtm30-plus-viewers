@@ -3,13 +3,9 @@ Jaanga Terrain SRTM30 Plus  Viewers Read Me
 
 <span style=display:none; >[View as web page]( terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" ></span>  
 
-<!--
-Read Me as &raquo; <a href=https://github.com/va3c/viewer/tree/gh-pages/va3c-hacker-cookbook/ target=_top title="View files with GitHub" >GitHub source code</a> <scan style=display:none ><< You are here</scan>  
-
-Link to GitHub source is not Markdown because GitHub does not want to be in an iframe so must have target=_top which means use of <a> tag.
--->
-
 Jaanga Terrain provides multiple ways of viewing the same data
+
+Note: Elevations are highly exaggerated - in a game-like fashion - in an over-exuberance of 3D happiness
 
 ## 3D Full Featured
 
@@ -17,24 +13,25 @@ Jaanga Terrain provides multiple ways of viewing the same data
 
 A full featured viewer. Start here to explore the possibilities.
 
-Built up from three files:
+The demo is built up from three files:
 
 * png-tms7-viewer-3d.html
 	* The container that reads the content file and the menu file
+	* Could be built using jQuery or any other UI library
 * png-tms7-viewer-3d-menu.md
-	* Menu file createde using Markdown syntax
+	* Menu file created using Markdown syntax
 * template-png-tms7-viewer-3d.html
 	* Standalone file to be loaded within an iframe
-	* Completey workable when not in an iframe
-	* Enables two-communication wit paren when within an iframe
+	* Loads, contains and process all 3D interaction
+	* Completely workable when not in an iframe
+	* Enables two-communication with parent when within an iframe
  
-
 
 ## 3D Hello World
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( ./png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-Very simple, basic code. Stat here to see how simple it is to start coding.
+Very simple, basic code. Start here to see how simple it is to start coding.
 
 
 ## Bitmap
@@ -43,7 +40,26 @@ Very simple, basic code. Stat here to see how simple it is to start coding.
 
 In need of some serious work...
 
+For an example of where a bitmap viewer may go, see [Jaanga Terrain PNG Viewer R3]( http://jaanga.github.io/terrain-viewer/png-viewer/r3/png-viewer-r3.html ). 
+This script only shows the earlier-work gray-scale bitmaps.
+
+
 ## Globe
 
-&raquo; 
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
