@@ -15,7 +15,7 @@
 	var tileX = 20;
 	var tileY = 49;
 
-	var srcDir = '../../../terrain-srtm30-plus-data-tms-7+/' + '7+' + '/';
+	var srcDir = '../../../terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
 	var info, stats, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -32,7 +32,6 @@
 		info.style.cssText = 'margin: 20px; position: absolute; ';
 		info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
 			'<div id=msg ></div>' +
-//			'<img id=heightMap onload=initCanvas(); /><br>' +
 		'';
 
 		stats = new Stats();
@@ -61,7 +60,9 @@
 		seaMesh = new THREE.Mesh( geometry, material );
 		scene.add( seaMesh );
 
+//
 		heightMap = document.createElement( 'img' );
+		heightMap.crossOrigin = 'Anonymous';
 		heightMap.onload = initCanvas;
 		heightMap.src = srcDir + tileX + '/' + tileY + '.png';
 
@@ -69,38 +70,38 @@
 
 	function initCanvas() {
 
-//		canvasHeightMap = document.body.appendChild( document.createElement( 'canvas' ) );
-//		canvasHeightMap.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 400px; z-index: 10; ';
-
 		canvasHeightMap = document.createElement( 'canvas' );
 		canvasHeightMap.width = canvasHeightMap.height =  256;
 		contextHeightMap = canvasHeightMap.getContext( '2d' );
 
 		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 256, 256 );
-		var image = contextHeightMap.getImageData( 0, 0, 256, 256 );
 
+		var image = contextHeightMap.getImageData( 0, 0, 256, 256 );
 		var rgb = image.data;
 
-		var geometry = new THREE.PlaneGeometry( 256, 256, 255, 255 );
+		var geometry = new THREE.PlaneBufferGeometry( 256, 256, 255, 255 );
 		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0.5 * Math.PI ) );
-		var vertices = geometry.vertices;
+
+		var vertices = geometry.attributes.position.array;
+
 		var elevation;
 
 		var scl = 0.008;
 
-		for ( var i = 0, j = 0; i < rgb.length; i += 4, j++) {
+		for ( var i = 0, j = 1; i < rgb.length; i += 4, j += 3 ) {
 
 			elevation = rgb[ i ] + 256 * rgb[ i + 1 ] + 65536 * rgb[ i + 2 ] ;
 
 			elevation = elevation < 32767 ? elevation : elevation - 16777216;
-			elevation  = elevation < -15000 ? 0 : elevation ;
+			elevation  = elevation < -11000 ? 0 : elevation ;
 
-			vertices[ j ].y = scl * elevation ;
+			vertices[ j ] = scl * elevation ;
 
 		}
 
 		geometry.computeFaceNormals();
 		geometry.computeVertexNormals();
+
 		var material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
 
 		var mesh = new THREE.Mesh( geometry, material );

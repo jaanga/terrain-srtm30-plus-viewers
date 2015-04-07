@@ -65,13 +65,13 @@
 
 		var fileType = (fileName.substr( fileName.lastIndexOf( '.' )).toLowerCase() );
 
-		if ( fileType === '.html' || fileType === '.htm' ) {
+		if ( fileType === '.html' || fileType === '.htm' || fileType === '.txt' ) {
 
 			loadHTMLInIframe( location.hash );
 
 		} else if ( fileType === '.md' ) {
 
-			loadMarkdownInIframe( location.hash );
+			loadMarkdownInDiv( fileName );
 
 		}
 

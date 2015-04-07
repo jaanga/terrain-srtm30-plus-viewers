@@ -1,11 +1,12 @@
 [Jaanga]( ../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM 30 Plus]( ../terrain-srtm30-plus-r2/terrain-srtm30-plus.html )
-[Viewers]( terrain-srtm30-plus-viewers.html )
+[Viewers Read Me]( terrain-srtm30-plus-viewers.html )
 ===
 
-[GitHub web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" >  
-&raquo; [GitHub source code]( https://github.com/jaanga/terrain-srtm30-plus-viewers/ "View files with GitHub" ) <scan style=display:none ><< You are here</scan>  
 
-[Read Me]( #readme.md# )
+[Jaanga Terrain SRTM30 Plus Viewers Read Me]( #./readme.md# )
+
+&raquo; [Jaanga Terrain source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/ "View files with GitHub" ) <scan style=display:none ><< You are here</scan>  
+
 
 ## Introduction (open)
 
@@ -25,6 +26,12 @@ Very simple, basic code. Stat here to see how simple it is to start coding.
 
 
 ## Bitmap
+
+&raquo; [SRTM30 Plus Bitmap]( ./png-tms7-viewer-bitmap/r7/index-left-side-hackette.html )
+
+## Globe
+
+
 
 
 
