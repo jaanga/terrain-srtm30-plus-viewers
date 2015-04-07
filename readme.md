@@ -31,7 +31,15 @@ The demo is built up from three files:
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( ./png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-Very simple, basic code. Start here to see how simple it is to start coding.
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
+
+Very simple, basic script. Start here to see how simple it is to start coding.
+
+
+## Globe
+
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
+
 
 
 ## Bitmap
@@ -42,14 +50,6 @@ In need of some serious work...
 
 For an example of where a bitmap viewer may go, see [Jaanga Terrain PNG Viewer R3]( http://jaanga.github.io/terrain-viewer/png-viewer/r3/png-viewer-r3.html ). 
 This script only shows the earlier-work gray-scale bitmaps.
-
-
-## Globe
-
-&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
-
-
-
 
 
 

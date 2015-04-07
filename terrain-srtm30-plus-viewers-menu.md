@@ -12,27 +12,36 @@
 
 A variety of apps able to open and display the SRTM30 plus data.
 
-## 3D Features (open)
+
+## 3D Full Feature (open)
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( ./png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
 
+[Read Me]( #./png-tms7-viewer-3d-features/readme.md# )
+
 A full featured viewer. Start here to explore the possibilities
+
 
 ## 3D Hello World (open)
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( ./png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-Very simple, basic code. Stat here to see how simple it is to start coding.
+[Read Me]( #./png-tms7-viewer-3d-hello-world/readme.md# )
 
+Very simple, basic code. Start here to see how simple it is to start coding.
+
+
+## Globe (open)
+
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
+
+[Read Me]( #./png-tms7-viewer-3d-globe/readme.md# )
 
 ## Bitmap
 
 &raquo; [SRTM30 Plus Bitmap]( ./png-tms7-viewer-bitmap/r7/index-left-side-hackette.html )
 
-## Globe
-
-
-
+[Read Me]( #./png-tms7-viewer-bitmap/readme.md# )
 
 
 

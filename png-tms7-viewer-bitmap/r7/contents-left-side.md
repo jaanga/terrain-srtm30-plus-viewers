@@ -1,4 +1,4 @@
-[Parent]( ../index.html ) &raquo;
+[Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
 [TMS7+ HGT Viewer Bitmap R1]( index-left-side-hackette.html )
 ===
 
