@@ -7,11 +7,13 @@ Jaanga Terrain provides multiple ways of viewing the same data
 
 Note: Elevations are highly exaggerated - in a game-like fashion - in an over-exuberance of 3D happiness
 
-## 3D Full Featured
+## 3D Full Feature
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
 
-A full featured viewer. Start here to explore the possibilities.
+A full featured viewer. Displays terrain as is Earth is a plain. Start here to explore the possibilities.
+
+Currently the most worked-out, well-developed viewer.
 
 The demo is built up from three files:
 
@@ -40,7 +42,7 @@ Very simple, basic script. Start here to see how simple it is to start coding.
 
 &raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
 
-
+A first pass at building a 3D globe.
 
 ## Bitmap
 
