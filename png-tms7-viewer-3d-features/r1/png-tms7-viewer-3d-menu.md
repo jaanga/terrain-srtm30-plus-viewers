@@ -54,7 +54,7 @@ Features of the app include the following:
 <a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
 * Based on the unFlatland series of scripts that make creating 3D views easier
 
-<a href="http://jaanga.github.io/terrain-srtm30-plus/srtm-to-3d/readme-reader.html" target="_blank">Read Me ~</a> 
+<a href="http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html" target="_blank">Read Me ~</a> 
 <a href="https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features" target="_blank">Source Code ~ </a> 
 
 Credits: <a href="http://threejs.org" target="_blank">three.js</a> - 
