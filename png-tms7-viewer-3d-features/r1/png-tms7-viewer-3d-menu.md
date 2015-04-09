@@ -55,7 +55,7 @@ Features of the app include the following:
 * Based on the unFlatland series of scripts that make creating 3D views easier
 
 <a href="http://jaanga.github.io/terrain-srtm30-plus/srtm-to-3d/readme-reader.html" target="_blank">Read Me ~</a> 
-<a href="https://github.com/jaanga/terrain-srtm30-plus/tree/gh-pages/srtm-to-3d" target="_blank">Source Code ~ </a> 
+<a href="https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features" target="_blank">Source Code ~ </a> 
 
 Credits: <a href="http://threejs.org" target="_blank">three.js</a> - 
 <a href="http://khronos.org/webgl/" target="_blank">webgl</a> - 

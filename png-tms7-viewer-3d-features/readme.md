@@ -1,7 +1,9 @@
 SRTM30 Plus to PNG TMS7 Viewer 3D Read Me
 ===
 
-[png-tms7-viewer-3d]( ./png-tms7-viewer-3d-features/latest/index.html )
+<span style=display:none; >[View as web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" ></span>  
+
+[Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Full Feature]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
 
 ## Concept
 
@@ -24,7 +26,6 @@ The demo is built up from three files:
 ## Issues
 
 * Incorrect links in About message
-* Navigation > tileX/Y not updating the scene
 * NSEW arrow buttons create errors at edge of world
 	* Should just continue going seamlessly
 * Vertical scale could go even lower

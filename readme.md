@@ -3,15 +3,19 @@ Jaanga Terrain SRTM30 Plus  Viewers Read Me
 
 <span style=display:none; >[View as web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" ></span>  
 
-Jaanga Terrain provides multiple ways of viewing the same data
+Jaanga Terrain provides multiple ways of viewing the SRTM 30 Plus data
 
-Note: Elevations are highly exaggerated - in a game-like fashion - in an over-exuberance of 3D happiness
+Notes: 
+
+* Elevations are highly exaggerated - in a game-like fashion - in an over-exuberance of 3D happiness
+* Each viewer has a read me file that includes a list of bugs/issues as well as a road map of what's likely to appear next
+
 
 ## 3D Full Feature
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
 
-A full featured viewer. Displays terrain as is Earth is a plain. Start here to explore the possibilities.
+A full featured viewer. Displays terrain as if the Earth is a plane. Start here to explore the possibilities.
 
 Currently the most worked-out, well-developed viewer.
 
@@ -38,7 +42,7 @@ The demo is built up from three files:
 Very simple, basic script. Start here to see how simple it is to start coding.
 
 
-## Globe
+## 3D Hello Globe
 
 &raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
 
