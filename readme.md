@@ -9,6 +9,9 @@ Notes:
 
 * Elevations are highly exaggerated - in a game-like fashion - in an over-exuberance of 3D happiness
 * Each viewer has a read me file that includes a list of bugs/issues as well as a road map of what's likely to appear next
+* This work is at an early stage and not yet prepared for general usage
+	* The apps are being built and tested on Windows 8.1 using the latest Chrome browser.
+	* Any other configuration - ie iPad or MacBook Air - is not likely to work 
 
 
 ## 3D Full Feature
@@ -39,7 +42,7 @@ The demo is built up from three files:
 
 &raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-Very simple, basic script. Start here to see how simple it is to start coding.
+Very simple, basic script. Start here to see how easy it is to begin coding.
 
 
 ## 3D Hello Globe
@@ -55,7 +58,7 @@ A first pass at building a 3D globe.
 In need of some serious work...
 
 For an example of where a bitmap viewer may go, see [Jaanga Terrain PNG Viewer R3]( http://jaanga.github.io/terrain-viewer/png-viewer/r3/png-viewer-r3.html ). 
-This script only shows the earlier-work gray-scale bitmaps.
+This script only shows the earlier-work gray-scale - very, very dark - bitmaps.
 
 
 

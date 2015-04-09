@@ -28,10 +28,10 @@ A full featured viewer. Start here to explore the possibilities
 
 [Read Me]( #./png-tms7-viewer-3d-hello-world/readme.md# )
 
-Very simple, basic code. Start here to see how simple it is to start coding.
+Very simple, basic script. Start here to see how easy it is to begin coding.
 
 
-## Globe (open)
+## 3D Hello Globe (open)
 
 &raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
 

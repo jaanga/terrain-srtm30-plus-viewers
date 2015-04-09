@@ -25,20 +25,19 @@ The demo is built up from three files:
  
 ## Issues
 
-* Incorrect links in About message
 * NSEW arrow buttons create errors at edge of world
 	* Should just continue going seamlessly
 * Vertical scale could go even lower
-* World location map does not load all 44 images the first time
+* World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
-	* actual data vs Mercator data issue
+	* Actual data vs Mercator data issue
 
 
 ## Road Map
 
 * Permalinks
 * Mouse over height map image provides readout of altitude/depth at cursor position
-
+* Gazetteer data to be displayed as points, lines and polygons - not just points
 
 
 ## Change Log
