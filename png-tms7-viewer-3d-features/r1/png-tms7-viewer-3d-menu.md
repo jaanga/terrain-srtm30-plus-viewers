@@ -22,8 +22,8 @@ Gazetteer: <select id=selPlace ></select>
 Lat: <select id=selLat onchange=ifr.contentWindow.selectFile(); ></select> 
 Lon: <select id=selLon onchange=ifr.contentWindow.selectFile(); ></select>
 
-TileX: <select id=selTileX onchange=ifr.contentWindow.updateTileParameters(); ></select>
-TileY: <select id=selTileY onchange=ifr.contentWindow.updateTileParameters(); ></select>
+TileX: <select id=selTileX onchange=ifr.contentWindow.setTileParameters(); ></select>
+TileY: <select id=selTileY onchange=ifr.contentWindow.setTileParameters(); ></select>
 
 Go: <button onclick=ifr.contentWindow.tileWest(); title="Go west" >&#8678;</button> 
 <button onclick=ifr.contentWindow.tileEast(); title="Go east"  >&#8680;</button> 

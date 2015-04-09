@@ -13,6 +13,7 @@
 
 	var selectedLocation = 'San Francisco CA';
 	var zoom = 7;
+	var scale = 8;
 
 	var latDefault = 37.796; // San Francisco
 	var lonDefault = -122.398; // San Francisco
@@ -20,9 +21,10 @@
 	var tileX = lon2tile( lonDefault, zoom );
 	var tileY = lat2tile( latDefault, zoom );
 
+	var ulLat, ulLon, lrLat, lrLon;
+
 	var min;
 	var max;
-	var scale = 8;
 
 	var size = 256;
 	var half = size / 2;
@@ -30,19 +32,23 @@
 
 	var renderer, scene, camera, controls;
 	var mesh, geometry, material;
-	var terrainMesh;
-	var canvas, context, image, imageLocation;
-	var canvasHeightMap, canvasTileMap, contextTileMap;
-	var canvasMap, contextMap;
 
-	var contextTMS, pix;
-	var grid;
-	var gazetteer;
-	var placards;
-	var mapMaterial, texture;
-	var ulLat, ulLon, lrLat, lrLon;
+//	var canvasHeightMap, canvasTileMap, contextTileMap;
+//	var canvasMap, contextMap;
 
 	var heightMap;
+	var canvasTMS, contextTMS;
+	var canvasSRTM, contextSRTM;
+
+	var grid, axis;
+	var gazetteer;
+	var placards;
+
+	var imageLocation;
+	var terrainMesh;
+	var mapMaterial;
+
+	var contextLocation;
 
 	init();
 	animate();
@@ -65,11 +71,7 @@
 			var info = document.body.appendChild( document.createElement( 'div' ) );
 			info.style.cssText = 'margin: 0 20px; position: absolute; ';
 			info.innerHTML = '<a href="" ><h1 style=margin:0; >' + document.title + '</h1></a>' +
-//				'<img id=heightMap onload=initCanvas(); /><br>' +
-
 				'<div id=heightMapHolder ></div>' +
-//				'<canvas id=canvasTileMap ></canvas>' +
-				'<p id=tileMap ></p>' +
 				'<p>' +
 					'<input type=file id=inpFile onchange=readFile(); >' +
 				'</p><p>' +
@@ -138,19 +140,10 @@
 
 		setHelpers();
 
-//		canvasTMS = document.body.appendChild( document.createElement( 'canvas' ) );
-//		canvasTMS.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 800px; z-index: 10; ';
-
-		canvasTMS = document.createElement( 'canvas' );
-		canvasTMS.width = canvasTMS.height =  256;
-		contextTMS = canvasTMS.getContext( '2d' );
-
 //		heightMap = document.body.appendChild( document.createElement( 'img' ) );
 //		heightMap.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 400px; z-index: 10; ';
 
-//		heightMap = document.createElement( 'img' );
-
-		heightMap = new Image();
+		heightMap = document.createElement( 'img' );
 		heightMap.crossOrigin = 'Anonymous';
 		heightMap.onload = initCanvas;
 
@@ -158,8 +151,16 @@
 //		canvasSRTM.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 1200px; z-index: 10; ';
 		contextSRTM = canvasSRTM.getContext( '2d' );
 
+//		canvasTMS = document.body.appendChild( document.createElement( 'canvas' ) );
+//		canvasTMS.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 800px; z-index: 10; ';
+
+		canvasTMS = document.createElement( 'canvas' );
+		canvasTMS.width = canvasTMS.height =  256;
+		contextTMS = canvasTMS.getContext( '2d' );
+
 		mapMaterial = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
 
+/*
 		if ( zoom === 7 ) {
 
 //			srcDir = '../../../terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
@@ -170,6 +171,9 @@
 			srcDir = 'C:/temp/srtm-png-tms-1-7/' + zoom + '/';
 
 		}
+
+*/
+		parent.selZoom.onchange();
 
 		getHeightMapSrc( srcDir + tileX + '/' + tileY + '.png', true );
 
@@ -215,6 +219,7 @@
 
 
 	function getGazetteerGolembek() {
+// http://www.golombek.com/locations.html
 
 //		var data = requestGazetteer( '../../../terrain-plus/gazetteer/places-2000.csv' );
 		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/places-2000.csv' );
@@ -273,6 +278,8 @@
 
 
 	function getGazetteerGEBCO() {
+// http://www.gebco.net/data_and_products/undersea_feature_names/
+
 
 //		var data = requestGazetteer( '../../../terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
 		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
@@ -361,18 +368,19 @@
 	function setPlacards() {
 
 // console.log( 'placards', gazetteer, parent.inpPlacards.checked );
+
 		scene.remove( placards );
 
 		if ( !gazetteer || !parent.inpPlacards.checked ) return;
 
 		placards = new THREE.Object3D();
 
-		dx = (lrLon - ulLon);
-		dy = (ulLat - lrLat);
+		var dx = (lrLon - ulLon);
+		var dy = (ulLat - lrLat);
 
 //console.log( 'dx',dx,'dy',dy  );
 
-		var lat, lon;
+		var place, alt, lat, lon;
 		var ptX, ptY;
 
 		contextSRTM.drawImage( heightMap, 0, 0 );
@@ -388,7 +396,8 @@
 				ptX =  256 * ( lon - ulLon ) / dx  - 256 / 2;
 				ptY = 256 * ( ulLat - lat ) / dy - 256 / 2 ;
 
-				alt = getAltitude( lat, lon );
+//				alt = getAltitude( lat, lon );
+				alt = getAltitude( ptX, ptY );
 
 //console.log( place[0], alt );
 
@@ -416,13 +425,14 @@
 	}
 
 
-	function getAltitude( lat, lon ) {
+//	function getAltitude( lat, lon ) {
+	function getAltitude( ptX, ptY ) {
 
-		dx = (lrLon - ulLon);
-		dy = (ulLat - lrLat);
+//		dx = (lrLon - ulLon);
+//		dy = (ulLat - lrLat);
 
-		ptX = heightMap.width * ( lon - ulLon ) / dx;
-		ptY = heightMap.height * ( ulLat - lat ) / dy;
+//		ptX = heightMap.width * ( lon - ulLon ) / dx;
+//		ptY = heightMap.height * ( ulLat - lat ) / dy;
 
 		p = contextSRTM.getImageData( ptX, ptY, 1, 1 ).data;
 
@@ -430,9 +440,9 @@
 		contextSRTM.strokeStyle =  '#ffff00';
 		contextSRTM.strokeRect( ptX, ptY, 1, 1  );
 
-			elevation = p[ 0 ] + 256 * p[ 1 ] + 65536 * p[ 2 ] ;
+		elevation = p[ 0 ] + 256 * p[ 1 ] + 65536 * p[ 2 ] ;
 
-			elevation = ( elevation < 32768 ) ? elevation : elevation - 16777215;
+		elevation = ( elevation < 32768 ) ? elevation : elevation - 16777215;
 
 /*
 
@@ -446,7 +456,7 @@ console.log( 'p', p );
 
 */
 
-			elevation  = elevation < -11000 || elevation > 9000 ? 0 : elevation ; // Marianas trench
+		elevation  = elevation < -11000 || elevation > 9000 ? 0 : elevation ; // Marianas Trench / Mt Everest
 
 		return elevation;
 
@@ -455,7 +465,7 @@ console.log( 'p', p );
 
 	function drawSprite( text, scale, color, x, y, z) {
 
-		texture = canvasText( text, color );
+		var texture = canvasText( text, color );
 		var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false, opacity: 1 } );
 		var sprite = new THREE.Sprite( spriteMaterial );
 		sprite.position.set( x, y, z ) ;
@@ -469,7 +479,7 @@ console.log( 'p', p );
 
 		var geometry = new THREE.Geometry();
 		geometry.vertices = [ v( x, y, z ), v( x, alt, z ) ];
-		material = new THREE.LineBasicMaterial( { color: 0x888888 } );
+		var material = new THREE.LineBasicMaterial( { color: 0x888888 } );
 		var line = new THREE.Line( geometry, material );
 		return line;
 
@@ -548,7 +558,7 @@ console.log( 'p', p );
 
 	function getLocationMap() {
 
-		canvasLocation = parent.locationMap.appendChild( document.createElement( 'canvas' ) );
+		var canvasLocation = parent.locationMap.appendChild( document.createElement( 'canvas' ) );
 		canvasLocation.width = canvasLocation.height = size;
 		canvasLocation.style.cssText = 'border: 1px solid gray; ';
 		canvasLocation.onclick = onMapClick;
@@ -563,6 +573,8 @@ console.log( 'p', p );
 		loadImage( '1-0-1.png', 0, half );
 		loadImage( '1-1-1.png', half, half );
 
+		var count =  0;
+
 		function loadImage( fileName, x, y ) {
 
 			var img = document.createElement( 'img' );
@@ -572,8 +584,9 @@ console.log( 'p', p );
 			img.onload = function(){
 
 				contextLocation.drawImage( img, 0, 0, 256, 256, x, y, half, half );
-
-				if ( fileName === '1-1-1.png' ) {
+				
+//				if ( fileName === '1-1-1.png' ) {
+				if ( ++count === 4 ) {
 
 					imageLocation = contextLocation.getImageData( 0, 0, size, size );
 
@@ -587,21 +600,21 @@ console.log( 'p', p );
 
 	}
 
-
 	function setLocationMapTarget() {
 
-		lat = parseFloat( parent.selLat.value );
-		lon = parseFloat( parent.selLon.value );
+		var lat = parseFloat( parent.selLat.value );
+		var lon = parseFloat( parent.selLon.value );
 
 		var siny = Math.sin( ( d2r * lat ) );
 //console.log( 'siny', siny );
 
 		lat = half - Math.log( ( 1 + siny ) / ( 1 - siny ) ) * half * 0.15;
+
 // 0.1 is just a trial and error number. What should the real scale factor be and why?
 //console.log( 'lat2', lat );
 
 		contextLocation.beginPath(); //
-		contextLocation.clearRect( 0, 0, canvasLocation.width, canvasLocation.height);
+		contextLocation.clearRect( 0, 0, size, size );
 
 		contextLocation.putImageData( imageLocation, 0, 0 );
 		contextLocation.strokeStyle =  'red';
@@ -624,6 +637,7 @@ console.log( 'p', p );
 	function onMapClick( e ) {
 
 		if ( e.pageX != undefined && e.pageY != undefined) {
+
 			var x = e.offsetX;
 			var y = e.offsetY;
 
@@ -707,8 +721,8 @@ console.log( 'p', p );
 
 	function setTileParameters() {
 
-		tileX = parent.selTileX.value;
-		tileY = parent.selTileY.value;
+		tileX = parseInt( parent.selTileX.value, 10 );
+		tileY = parseInt( parent.selTileY.value, 10 );
 
 		getHeightMapSrc(  srcDir + tileX + '/' + tileY + '.png' );
 
@@ -748,7 +762,7 @@ console.log( 'p', p );
 
 		var image = contextTMS.getImageData( 0, 0, 256, 256 );
 
-		pix = image.data;
+		var pix = image.data;
 
 		var geometry = new THREE.PlaneBufferGeometry( 256, 256, 255, 255 );
 		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0.5 * Math.PI ) );
@@ -769,7 +783,7 @@ console.log( 'p', p );
 
 /*
 
-// Uncomment to see the crazy numbers 
+// Uncomment to see the crazy numbers
 
 if ( elevation < -11000 ) {
 
@@ -784,13 +798,13 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 			min = elevation < min ? elevation : min;
 
 			vertices[ j ] = scl * elevation ;
-			elevations.push( elevation );
+//			elevations.push( elevation );
 
 		}
 
 //console.log( '\nmin', min, 'max', max  );
 
-//		geometry.computeFaceNormals();
+		geometry.computeFaceNormals();
 		geometry.computeVertexNormals();
 
 		if ( terrainMesh ) { scene.remove( terrainMesh ); }
@@ -866,9 +880,9 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 //			canvasMap = document.body.appendChild( document.createElement( 'canvas' ) );
 //			canvasMap.style.cssText = 'border: 1px solid gray; position: absolute; top: 0; z-index:-10;';
 
-			canvasMap = document.createElement( 'canvas' );
+			var canvasMap = document.createElement( 'canvas' );
 			canvasMap.width = canvasMap.height = size;
-			contextMap = canvasMap.getContext( '2d' );
+			var contextMap = canvasMap.getContext( '2d' );
 
 
 
@@ -902,7 +916,7 @@ console.log( pix[ i ] + ' ' + pix[ i + 1 ] + ' ' + pix[ i + 2 ]  + ' ' + pix[ i 
 
 					if ( ++count === 64 ) {
 
-						texture = new THREE.Texture( canvasMap );
+						var texture = new THREE.Texture( canvasMap );
 //						texture.minFilter = texture.magFilter = THREE.NearestFilter;
 						texture.needsUpdate = true;
 

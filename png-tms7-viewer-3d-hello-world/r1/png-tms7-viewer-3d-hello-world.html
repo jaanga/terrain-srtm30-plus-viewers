@@ -17,8 +17,10 @@
 
 	var srcDir = '../../../terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
-	var info, stats, renderer, scene, camera, controls;
-	var geometry, material, mesh;
+	var stats, renderer, scene, camera, controls;
+	var geometry, material, mesh, axisHelper;
+
+	var heightMap, canvasHeightMap, contextHeightMap;
 
 	init();
 	animate();
@@ -66,13 +68,14 @@
 		heightMap.onload = initCanvas;
 		heightMap.src = srcDir + tileX + '/' + tileY + '.png';
 
-	}
-
-	function initCanvas() {
-
 		canvasHeightMap = document.createElement( 'canvas' );
 		canvasHeightMap.width = canvasHeightMap.height =  256;
 		contextHeightMap = canvasHeightMap.getContext( '2d' );
+
+	}
+
+
+	function initCanvas() {
 
 		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 256, 256 );
 
@@ -83,9 +86,7 @@
 		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0.5 * Math.PI ) );
 
 		var vertices = geometry.attributes.position.array;
-
 		var elevation;
-
 		var scl = 0.008;
 
 		for ( var i = 0, j = 1; i < rgb.length; i += 4, j += 3 ) {
