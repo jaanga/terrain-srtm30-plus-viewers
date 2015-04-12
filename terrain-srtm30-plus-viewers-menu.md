@@ -37,11 +37,12 @@ Very simple, basic script. Start here to see how easy it is to begin coding.
 
 [Read Me]( #./png-tms7-viewer-3d-globe/readme.md# )
 
+
 ## Bitmap
 
-&raquo; [SRTM30 Plus Bitmap]( ./png-tms7-viewer-bitmap/r7/index-left-side-hackette.html )
+&raquo; [SRTM30 Plus Bitmap]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
 
-[Read Me]( #./png-tms7-viewer-bitmap/readme.md# )
+[Read Me]( #./png-10degree-viewer-bitmap/readme.md# )
 
 
 

@@ -53,13 +53,9 @@ A first pass at building a 3D globe.
 
 ## Bitmap
 
-&raquo; [SRTM30 Plus Bitmap]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-bitmap/r7/index-left-side-hackette.html )
+&raquo; [10 Degree Bitmap]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
 
-In need of some serious work...
-
-For an example of where a bitmap viewer may go, see [Jaanga Terrain PNG Viewer R3]( http://jaanga.github.io/terrain-viewer/png-viewer/r3/png-viewer-r3.html ). 
-This script only shows the earlier-work gray-scale - very, very dark - bitmaps.
-
+A wor-in-progress. Images may take twenty seconds or so to load the first time.
 
 
 
