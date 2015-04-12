@@ -5,7 +5,7 @@
 ## Height Map
 
 <div id=heightMapHolder ></div>  
-<small>PNG height map image created from Scripps institute data</small> 
+<small>PNG height map image created from Scripps Institution of Oceanography data</small> 
 
 ## Zoom & Gazetteer (open)
 

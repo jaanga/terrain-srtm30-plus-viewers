@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Template PNG 1 Degree Viewer Bitmap</title>
+<title>Template PNG 10 Degree Viewer Bitmap</title>
 <meta charset=utf-8 />
 
 </head>
 <body>
 <script>
-	var xmlHttp;
 
-//	var dir = 'C:/temp/srtm-hgt-temp/';
-	var dir = 'c:/temp/srtm-png-1degree/';
+	var imageDir = 'c:/temp/srtm-png-10degree/';
+	var imageDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-10degree/images/';
+
 	var selectedLocation = 'San Francisco CA';
-	var lat = 37; // sf
-	var lon = -123; // sf
+	var lat = 30; // sf
+	var lon = -130; // sf
 
 	var fileName;
 
@@ -21,6 +21,7 @@
 	var half = size / 2;
 	var d2r = Math.PI / 180;
 
+/*
 	var frequency1 = 0.001, 
 	frequency2 = 0.001, 
 	frequency3 = 0.001, 
@@ -30,6 +31,7 @@
 	center = 128; //255 / 2, 
 	amplitude = 127; // / 2;
 	var sin = function( n ) { return Math.sin( n ); };
+*/
 
 	var imageLocation;
 
@@ -40,7 +42,7 @@
 		if ( window.self === window.top ) {
 
 			var css = document.head.appendChild( document.createElement('style') );
-			css.innerHTML ='body { font: 600 12pt monospace; margin: 0 20px; overflow: hidden; }' ;
+			css.innerHTML ='body { font: 600 12pt monospace; margin: 0 20px; /*overflow: hidden; */}' ;
 
 			var info = document.body.appendChild( document.createElement( 'div' ) );
 			info.style.cssText = ' max-width: 400px; position: absolute;';
@@ -81,7 +83,7 @@
 //		canvas.width = 337;
 //		canvas.height = 350;
 //		canvas.onmousemove = onMMove;
-		canvas.style.cssText = 'border: 1px solid black; left: 0; margin: auto; position: absolute; right: 0;';
+		canvas.style.cssText = 'border: 1px solid black; left: 0; margin: auto; position: absolute; right: 0; z-index: -1; ';
 		canvas.onmousemove = onMMove;
 		context = canvas.getContext( '2d' );
 
@@ -135,8 +137,8 @@
 
 				var startPlace = this.selectedIndex;
 
-				lon = Math.floor( gazetteer[ startPlace ][ 2 ] );
-				lat = Math.floor( gazetteer[ startPlace ][ 1 ] );
+				lon = 10 * Math.floor( gazetteer[ startPlace ][ 2 ] / 10 );
+				lat = 10 * Math.floor( gazetteer[ startPlace ][ 1 ] / 10 );
 
 				getImage( lat, lon );
 
@@ -201,8 +203,8 @@
 
 				var startPlace = this.selectedIndex;
 
-				lon = Math.floor( gazetteer[ startPlace ][ 2 ] );
-				lat = Math.Floor( gazetteer[ startPlace ][ 1 ] );
+				lon = 10 * Math.floor( gazetteer[ startPlace ][ 2 ] / 10 );
+				lat = 10 * Math.floor( gazetteer[ startPlace ][ 1 ] / 10 );
 
 				getImage( lat, lon );
 
@@ -248,7 +250,7 @@
 		contextLocation = canvasLocation.getContext( '2d' );
 
 //		var dir = '../../../terrain-plus/samples-png/';
-		var dir = 'http://jaanga.github.io/terrain-plus/samples-png/';
+		var mapDir = 'http://jaanga.github.io/terrain-plus/samples-png/';
 
 
 		loadImage( '1-0-0.png', 0, 0 );
@@ -262,7 +264,7 @@
 
 			var img = document.createElement( 'img' );
 			img.crossOrigin = 'Anonymous';
-			img.src = dir + fileName;
+			img.src = mapDir + fileName;
 
 			img.onload = function(){
 
@@ -327,8 +329,8 @@
 			var x = e.offsetX - 128;
 			var y = e.offsetY - 128;
 
-			lat = Math.floor( -90 * y / 128 );
-			lon = Math.floor( 180 * x / 128 );
+			lat = 10 * Math.floor( ( -90 * y / 128 ) / 10 );
+			lon = 10 * Math.floor( (180 * x / 128 ) / 10 );
 
 console.log( x, y, lat, lon );
 
@@ -342,11 +344,11 @@ console.log( x, y, lat, lon );
 
 		if ( lat >= 0 ) {
 
-			fileLat =  'n' + ( '00' + lat ).substr( -2 ) + '/n' + ( '00' + lat).substr( -2 ) ;
+			fileLat =  'n' + ( '00' + lat).substr( -2 ) ;
 
 		} else {
 
-			fileLat =  's' + ( '00' + Math.abs( lat ) ).substr( -2 ) + '/s' + ( '00' + Math.abs( lat ) ).substr( -2 ) ;
+			fileLat =  's' + ( '00' + Math.abs( lat ) ).substr( -2 ) ;
 
 		}
 
@@ -360,7 +362,7 @@ console.log( x, y, lat, lon );
 
 		}
 		
-		var fileName =  dir + fileLat + fileLon + '.png';
+		var fileName =  imageDir + fileLat + fileLon + '.png';
 		image.crossOrigin = 'anonymous';
 		image.onload = drawImage;
 		image.src = fileName;
@@ -375,11 +377,10 @@ console.log( x, y, lat, lon );
 
 	function drawImage() {
 
-		canvas.width = 4 * image.width;
-		canvas.height =  4 * image.height;
+		canvas.width = image.width;
+		canvas.height =  image.height;
 		context.drawImage( image, 0, 0, image.width , image.height, 0, 0, canvas.width , canvas.height);
 
-//		history.pushState( '', document.title, window.location.pathname );
 	}
 
 	function onMMove( event ) {
@@ -405,6 +406,7 @@ console.log( x, y, lat, lon );
 			'<p>elevation in meters: ' + elevation + '</p>';
 	}
 
+
 	function rgbToHex(r, g, b) {
 		var str = ( r + 256 * g + 65536 * b ).toString( 16 );
 		str = ( '000000' + str ).slice( -6 ); 
@@ -412,74 +414,10 @@ console.log( x, y, lat, lon );
 	}
 
 
-	function parseData( arrayBuffer, fname) {
-/*
-		if ( fname.substr( folderSource.length, 4 ) === 'ferr' ) {
-			canvas.width = canvas.height = 1201;
-		} else if ( fname.substr( folderSource.length, 4 ) === 'usgs' ) {
-			canvas.width = canvas.height = 3601;
-		} else {
-			canvas.width = 4800;
-			canvas.height = 6000;
-		}
-*/
-
-		var byteArray = new Uint8Array( arrayBuffer );
-		var imageData = context.createImageData( canvas.width, canvas.height );
-		var imageDataData = imageData.data;
-		var i, len = imageDataData.length;
-		var elevation;
-		var index = 0;
-
-		if ( parent.inpPretty.checked === true ) {
-			for ( i = 0; i < len; i++ ) {
-				//elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
-				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
-				imageDataData[ i++ ] = Math.sin( frequency1 * elevation + phase1 ) * amplitude + center;
-				imageDataData[ i++ ] = Math.sin( frequency2 * elevation + phase2 ) * amplitude + center;
-				imageDataData[ i++ ] = Math.sin( frequency3 * elevation + phase3 ) * amplitude + center;
-				imageDataData[ i ] = 255;
-			}
-		} else if ( parent.inpPrettyMistake.checked === true ) {
-			for ( i = 0; i < len; i++ ) {
-				//elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
-				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
-				imageDataData[ i++ ] = elevation & 0x0000ff;
-				imageDataData[ i++ ] = (( elevation & 0x00ff00) >> 8);
-				imageDataData[ i++ ] = ((elevation & 0xff0000) >> 16);
-				imageDataData[ i ] = 255;
-			}
-		} else {
-
-			for ( i = 0; i < len; i++ ) {
-				// elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
-				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
-				imageDataData[ i++ ] = (( elevation & 0xff0000 ) >> 16 );
-				imageDataData[ i++ ] = (( elevation & 0x00ff00 ) >> 8 );
-				imageDataData[ i++ ] = elevation & 0x0000ff;
-				imageDataData[ i ] = 255;
-			}
-		}
-
-		context.putImageData( imageData, 0, 0 );
-
-// Following is for testing and verification
-// 'elevations' records the data read from the source files. 
-// Used to check if the height maps elevations and source agree
-		elevations = [];
-		len = byteArray.length;
-		index = 0;
-		for ( i = 0; i < len; ) {
-			elevations.push( byteArray[ i++ ] * 256 + byteArray[ i++ ] );
-		}
-
-//console.log( 'Load time in ms: ', new Date() - startTime );
-
-	}
-
 	function tileWest() {
 
-		lon = --lon > -180 ? lon : 179;
+		lon -= 10;
+		lon = lon > -180 ? lon : 179;
 
 		getImage( lat, lon );
 
@@ -487,7 +425,8 @@ console.log( x, y, lat, lon );
 
 	function tileEast() {
 		
-		lon = ++lon < 180 ? lon : -179;
+		lon += 10;
+		lon = lon < 180 ? lon : -179;
 
 		getImage( lat, lon );
 
@@ -496,7 +435,8 @@ console.log( x, y, lat, lon );
 
 	function tileNorth() {
 
-		lat = ++lat < 90 ? lat : -90;
+		lat += 10;
+		lat = lat < 80 ? lat : 80;
 
 		getImage( lat, lon );
 
@@ -504,7 +444,8 @@ console.log( x, y, lat, lon );
 
 	function tileSouth() {
 
-		lat = --lat > -90 ? lat : 90;
+		lat -= 10
+		lat = lat > -90 ? lat : -90;
 
 		getImage( lat, lon );
 
