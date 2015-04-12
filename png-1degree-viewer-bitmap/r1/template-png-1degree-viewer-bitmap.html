@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Template PNG 1 Degree Viewer Bitmap</title>
+<meta charset=utf-8 />
+
+</head>
+<body>
+<script>
+	var xmlHttp;
+
+//	var dir = 'C:/temp/srtm-hgt-temp/';
+	var dir = 'c:/temp/srtm-png-1degree/';
+	var selectedLocation = 'San Francisco CA';
+	var lat = 37; // sf
+	var lon = -123; // sf
+
+	var fileName;
+
+	var size = 256;
+	var half = size / 2;
+	var d2r = Math.PI / 180;
+
+	var frequency1 = 0.001, 
+	frequency2 = 0.001, 
+	frequency3 = 0.001, 
+	phase1 = 0, 
+	phase2 = 2, // 2 * Math.PI / 3, 
+	phase3 = 4, // 4 * Math.PI / 3 , 
+	center = 128; //255 / 2, 
+	amplitude = 127; // / 2;
+	var sin = function( n ) { return Math.sin( n ); };
+
+	var imageLocation;
+
+	init();
+
+	function init() {
+
+		if ( window.self === window.top ) {
+
+			var css = document.head.appendChild( document.createElement('style') );
+			css.innerHTML ='body { font: 600 12pt monospace; margin: 0 20px; overflow: hidden; }' ;
+
+			var info = document.body.appendChild( document.createElement( 'div' ) );
+			info.style.cssText = ' max-width: 400px; position: absolute;';
+			info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
+//				'Pretty colors: <input id=inpPretty type=checkbox title="display a continuous range of colors" ><br>' +
+//				'Pretty mistake: <input id=inpPrettyMistake type=checkbox title="BGR instead of RGB" ><br>' +
+				'<div id=msg1 ></div>' +
+				'</p><p>' +
+					'Gazetteer: <select id=selPlace ></select>' +
+				'</p><p>' +
+				'</p><p>' +
+					'<input type=radio id=inpGolem name=gaz onclick=setGazetteer(); checked /> Golembek <input type=radio id=inpGEDCO name=gaz onclick=setGazetteer(); />GEDCO Undersea' +
+				'</p><p>' +
+					'Go: <button onclick=tileWest(); title="Go west" >&#8678;</button> ' +
+					'<button onclick=tileEast(); title="Go east"  >&#8680;</button> ' +
+
+					'<button onclick=tileNorth(); title="Go north" >&#8679;</button> ' +
+					'<button onclick=tileSouth(); title="Go south" >&#8681;</button> ' +
+				'</p>' +
+				'</p><p id=locationMap ></p>' +
+				'<hr>' +
+				'<p id=swatch >' +
+					'Color' +
+				'</p>' +
+				'<div id=msg2 >Move cursor over image to see pixel statistics</div>' +
+			'';
+
+		} else {
+
+		}
+
+		getGazetteerGolembek();
+		getLocationMap();
+
+		image = document.createElement( 'img' );
+
+		canvas = document.body.appendChild( document.createElement( 'canvas' ) );
+//		canvas.width = 337;
+//		canvas.height = 350;
+//		canvas.onmousemove = onMMove;
+		canvas.style.cssText = 'border: 1px solid black; left: 0; margin: auto; position: absolute; right: 0;';
+		canvas.onmousemove = onMMove;
+		context = canvas.getContext( '2d' );
+
+
+		getImage( lat, lon );
+
+	}
+
+	function getGazetteerGolembek() {
+// http://www.golombek.com/locations.html
+
+//		var data = requestGazetteer( '../../../terrain-plus/gazetteer/places-2000.csv' );
+		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/places-2000.csv' );
+		var xmlHttp;
+
+		function requestGazetteer( fileName ) {
+
+			xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( 'GET', fileName, true );
+			xmlHttp.onreadystatechange = callbackGazetteer;
+			xmlHttp.send( null );
+
+		}
+
+		function callbackGazetteer() {
+
+			if ( xmlHttp.readyState != 4  ) { return; }
+
+			var response = xmlHttp.responseText;
+
+			var lines = response.split(/\r\n|\n/);
+			gazetteer = [ ['Select a location','37.796','-122.398'] ];
+			var index = 0;
+
+			for ( var i = 1, place; i < lines.length; i++ ) {
+
+				place = lines[i].split( ';' );
+
+				if ( place[ 0 ] === selectedLocation ) { index = i; };
+
+				gazetteer.push( [ place[0], parseFloat( place[ 1 ] ), parseFloat( place[ 2 ] ) ] );
+
+				parent.selPlace.appendChild( document.createElement( 'option' ) );
+				parent.selPlace.children[ i - 1 ].text = gazetteer[ i - 1 ][ 0 ];
+
+			}
+
+			parent.selPlace.selectedIndex = index;
+
+			parent.selPlace.onchange = function() {
+
+				var startPlace = this.selectedIndex;
+
+				lon = Math.floor( gazetteer[ startPlace ][ 2 ] );
+				lat = Math.floor( gazetteer[ startPlace ][ 1 ] );
+
+				getImage( lat, lon );
+
+			};
+
+//			setPlacards();
+
+		}
+
+	}
+
+
+	function getGazetteerGEBCO() {
+// http://www.gebco.net/data_and_products/undersea_feature_names/
+
+
+//		var data = requestGazetteer( '../../../terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
+		var data = requestGazetteer( 'http://jaanga.github.io/terrain-plus/gazetteer/gebco-undersea-feature-names-gazetteer.csv' );
+		var xmlHttp;
+
+		function requestGazetteer( fileName ) {
+
+			xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( 'GET', fileName, true );
+			xmlHttp.onreadystatechange = callbackGazetteer;
+			xmlHttp.send( null );
+
+		}
+
+		function callbackGazetteer() {
+
+			if ( xmlHttp.readyState != 4  ) { return; }
+
+			var response = xmlHttp.responseText;
+
+			lines = response.split(/",\r\n"|",\n"|"\n"/);
+
+			gazetteer = [ ['Select a location','37.796','-122.398'] ];
+
+			var index = 0;
+
+			places = [];
+
+			for ( var i = 1, place; i < lines.length; i++ ) {
+
+				place = lines[i].replace(/"/g,'').split( ',' );
+
+				places.push( place );
+
+				s = place[ place.length - 1 ];
+
+				s = s.replace( /\"POINT|\(|\)/g,'').split(' ');
+
+				gazetteer.push( [ place[ 0 ] + ' ' +  place[ 1 ], parseFloat( s[ 2 ] ), parseFloat( s[ 1 ] ) ] );
+
+				parent.selPlace.appendChild( document.createElement( 'option' ) );
+				parent.selPlace.children[ i - 1 ].text = gazetteer[ i - 1 ][ 0 ];
+
+			}
+
+			parent.selPlace.onchange = function() {
+
+				var startPlace = this.selectedIndex;
+
+				lon = Math.floor( gazetteer[ startPlace ][ 2 ] );
+				lat = Math.Floor( gazetteer[ startPlace ][ 1 ] );
+
+				getImage( lat, lon );
+
+			};
+
+			parent.selPlace.selectedIndex = 0;
+
+//			setPlacards();
+
+		}
+
+	}
+
+
+	function setGazetteer() {
+
+		for ( var i = 0; i < parent.selPlace.children.length; i++ ) {
+
+			parent.selPlace.removeChild[ 0 ];
+		}
+
+		if ( parent.inpGolem.checked ) {
+
+			getGazetteerGolembek();
+
+		} else {
+
+			getGazetteerGEBCO();
+
+		}
+
+	}
+
+
+
+	function getLocationMap() {
+
+		var canvasLocation = parent.locationMap.appendChild( document.createElement( 'canvas' ) );
+		canvasLocation.width = canvasLocation.height = size;
+		canvasLocation.style.cssText = 'border: 1px solid gray; ';
+		canvasLocation.onclick = onMapClick;
+		canvasLocation.title ='Clicking supported - but latitude not yet corrected for Mercator projection ;-)';
+		contextLocation = canvasLocation.getContext( '2d' );
+
+//		var dir = '../../../terrain-plus/samples-png/';
+		var dir = 'http://jaanga.github.io/terrain-plus/samples-png/';
+
+
+		loadImage( '1-0-0.png', 0, 0 );
+		loadImage( '1-1-0.png', half, 0 );
+		loadImage( '1-0-1.png', 0, half );
+		loadImage( '1-1-1.png', half, half );
+
+		var count =  0;
+
+		function loadImage( fileName, x, y ) {
+
+			var img = document.createElement( 'img' );
+			img.crossOrigin = 'Anonymous';
+			img.src = dir + fileName;
+
+			img.onload = function(){
+
+				contextLocation.drawImage( img, 0, 0, 256, 256, x, y, half, half );
+				
+				if ( ++count === 4 ) {
+
+					imageLocation = contextLocation.getImageData( 0, 0, size, size );
+					setLocationMapTarget();
+
+				}
+
+			}
+
+		}
+
+	}
+
+	function setLocationMapTarget() {
+
+		var mapLat = lat; //parseFloat( parent.selLat.value );
+		var mapLon = lon; // parseFloat( parent.selLon.value );
+
+		var siny = Math.sin( ( d2r * mapLat ) );
+//console.log( 'siny', siny );
+
+		mapLat = half - Math.log( ( 1 + siny ) / ( 1 - siny ) ) * half * 0.15;
+
+// 0.1 is just a trial and error number. What should the real scale factor be and why?
+//console.log( 'mapLat2', mapLat );
+
+//		imageLocation = contextLocation.getImageData( 0, 0, size, size );
+
+		contextLocation.beginPath(); //
+		contextLocation.clearRect( 0, 0, size, size );
+
+		if ( imageLocation ) {
+			contextLocation.putImageData( imageLocation, 0, 0 );
+		}
+
+		contextLocation.strokeStyle =  'red';
+
+		contextLocation.moveTo( 0, mapLat );
+		contextLocation.lineTo( size, mapLat );
+		contextLocation.stroke();
+
+		mapLon = size * ( ( 180 + mapLon ) / 360 );
+//console.log( '\n\nlon3', mapLon );
+
+		contextLocation.moveTo( mapLon, 0 );
+		contextLocation.lineTo( mapLon, size );
+		contextLocation.stroke();
+		contextLocation.closePath();
+
+	}
+
+
+	function onMapClick( e ) {
+
+		if ( e.pageX != undefined && e.pageY != undefined) {
+
+			var x = e.offsetX - 128;
+			var y = e.offsetY - 128;
+
+			lat = Math.floor( -90 * y / 128 );
+			lon = Math.floor( 180 * x / 128 );
+
+console.log( x, y, lat, lon );
+
+			getImage( lat, lon );
+
+		}
+
+	}
+
+	function getImage( lat, lon ) {
+
+		if ( lat >= 0 ) {
+
+			fileLat =  'n' + ( '00' + lat).substr( -2 ) + '/n' + ( '00' + lat).substr( -2 ) ;
+
+		} else {
+
+			fileLat =  's' + ( '00' + Math.abs( lat ) ).substr( -2 ) + '/s' + ( '00' + Math.abs( lat ) ).substr( -2 ) ;
+
+		}
+
+		if ( lon >= 0 ) {
+
+			fileLon =  'e' + ( '000' + lon ).substr( -3 ) ;
+
+		} else {
+
+			fileLon =  'w' + ( '000' + Math.abs( lon ) ).substr( -3 ) ;
+
+		}
+		
+		var fileName =  dir + fileLat + fileLon + '.png';
+		image.crossOrigin = 'anonymous';
+		image.onload = drawImage;
+		image.src = fileName;
+
+		msg1.innerHTML = 'lat:' + lat + ' lon:' + lon + '<br>' +
+			'file:' + fileName +
+		'';
+
+		setLocationMapTarget();
+
+	}
+
+	function drawImage() {
+
+		canvas.width = 4 * image.width;
+		canvas.height =  4 * image.height;
+		context.drawImage( image, 0, 0, image.width , image.height, 0, 0, canvas.width , canvas.height);
+
+//		history.pushState( '', document.title, window.location.pathname );
+	}
+
+	function onMMove( event ) {
+
+		var x = event.offsetX;
+		var y = event.offsetY;
+		var p = context.getImageData( x, y, 1, 1).data;
+
+		var hex = rgbToHex( p[0], p[1], p[2] ).toUpperCase();
+		var indexHtMap = parseInt( '0x' + hex, 16 );
+//		var elevHtMap = ( indexHtMap < 32768 ) ? indexHtMap : -(65536 - indexHtMap );
+
+		var elevation = indexHtMap < 32767 ? indexHtMap : indexHtMap - 16777216;
+		var elevation  = elevation < -11000 ? 0 : elevation ;
+
+		var swatchHex = rgbToHex( p[2], p[1], p[0] ).toUpperCase();
+		swatch.style.backgroundColor = '#' + swatchHex;
+
+		msg2.innerHTML =  
+			'<p>x: ' + x + ' y: ' + y + '<p>' +
+			'<p>rgb: ' + p[0] + ' ' +  p[1] + ' ' + p[2]  + '</p>' +
+			'<p>hex: #' + hex + ' raw HtMap:' + indexHtMap + '</p>' +
+			'<p>elevation in meters: ' + elevation + '</p>';
+	}
+
+	function rgbToHex(r, g, b) {
+		var str = ( r + 256 * g + 65536 * b ).toString( 16 );
+		str = ( '000000' + str ).slice( -6 ); 
+		return str;
+	}
+
+
+	function parseData( arrayBuffer, fname) {
+/*
+		if ( fname.substr( folderSource.length, 4 ) === 'ferr' ) {
+			canvas.width = canvas.height = 1201;
+		} else if ( fname.substr( folderSource.length, 4 ) === 'usgs' ) {
+			canvas.width = canvas.height = 3601;
+		} else {
+			canvas.width = 4800;
+			canvas.height = 6000;
+		}
+*/
+
+		var byteArray = new Uint8Array( arrayBuffer );
+		var imageData = context.createImageData( canvas.width, canvas.height );
+		var imageDataData = imageData.data;
+		var i, len = imageDataData.length;
+		var elevation;
+		var index = 0;
+
+		if ( parent.inpPretty.checked === true ) {
+			for ( i = 0; i < len; i++ ) {
+				//elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
+				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
+				imageDataData[ i++ ] = Math.sin( frequency1 * elevation + phase1 ) * amplitude + center;
+				imageDataData[ i++ ] = Math.sin( frequency2 * elevation + phase2 ) * amplitude + center;
+				imageDataData[ i++ ] = Math.sin( frequency3 * elevation + phase3 ) * amplitude + center;
+				imageDataData[ i ] = 255;
+			}
+		} else if ( parent.inpPrettyMistake.checked === true ) {
+			for ( i = 0; i < len; i++ ) {
+				//elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
+				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
+				imageDataData[ i++ ] = elevation & 0x0000ff;
+				imageDataData[ i++ ] = (( elevation & 0x00ff00) >> 8);
+				imageDataData[ i++ ] = ((elevation & 0xff0000) >> 16);
+				imageDataData[ i ] = 255;
+			}
+		} else {
+
+			for ( i = 0; i < len; i++ ) {
+				// elevation = byteArray[ index++ ] * 256 + byteArray[ index++ ];
+				elevation = ( (byteArray[ index++ ] << 8) + byteArray[ index++ ] );
+				imageDataData[ i++ ] = (( elevation & 0xff0000 ) >> 16 );
+				imageDataData[ i++ ] = (( elevation & 0x00ff00 ) >> 8 );
+				imageDataData[ i++ ] = elevation & 0x0000ff;
+				imageDataData[ i ] = 255;
+			}
+		}
+
+		context.putImageData( imageData, 0, 0 );
+
+// Following is for testing and verification
+// 'elevations' records the data read from the source files. 
+// Used to check if the height maps elevations and source agree
+		elevations = [];
+		len = byteArray.length;
+		index = 0;
+		for ( i = 0; i < len; ) {
+			elevations.push( byteArray[ i++ ] * 256 + byteArray[ i++ ] );
+		}
+
+//console.log( 'Load time in ms: ', new Date() - startTime );
+
+	}
+
+	function tileWest() {
+
+		lon = --lon > -180 ? lon : 179;
+
+		getImage( lat, lon );
+
+	}
+
+	function tileEast() {
+		
+		lon = ++lon < 180 ? lon : -179;
+
+		getImage( lat, lon );
+
+	}
+
+
+	function tileNorth() {
+
+		lat = ++lat < 90 ? lat : -90;
+
+		getImage( lat, lon );
+
+	}
+
+	function tileSouth() {
+
+		lat = --lat > -90 ? lat : 90;
+
+		getImage( lat, lon );
+
+	}
+
+</script>
+</body>
+</html>
