@@ -1,5 +1,5 @@
 [Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
-[PNG TMS7 Viewer 3D]( png-tms7-viewer-3d.html )
+[PNG TMS7 Viewer 3D]( png-tms7-viewer-3d.html "View SRTM data prepared by the Scripps Institution of Oceanography at UCSD" )
 ===
 
 ## Height Map
@@ -13,7 +13,8 @@ Zoom Level: <select id=selZoom onchange=ifr.contentWindow.setZoom(); ></select>
 
 Gazetteer: <select id=selPlace ></select>
 
-<input type=radio id=inpGolem name=gaz onclick=ifr.contentWindow.setGazetteer(); checked /> Golembek <input type=radio id=inpGEDCO name=gaz onclick=ifr.contentWindow.setGazetteer(); />GEDCO Undersea  
+<input type=radio id=inpGolem name=gaz onclick=ifr.contentWindow.setGazetteer(); title="Over 2,000 place names" checked /> Golembek 
+<input type=radio id=inpGEBCO name=gaz onclick=ifr.contentWindow.setGazetteer(); title="over 3,800 undersea feature names" />GEBCO Undersea  
 <input type=checkbox id=inpPlacards onchange=ifr.contentWindow.setPlacards(); checked /> Display placards
 
 
@@ -43,7 +44,7 @@ Vertical scale: <input type=range id=inpScale onchange=ifr.contentWindow.scale=p
 
 ## Location Map (open)
 
-<div id=locationMap ></div>  
+<div id=locationMap title='Not fully Mercatorized yet...' ></div>  
 <small>Click anywhere in this map to go there</small>
 
 ## About
@@ -54,7 +55,7 @@ Features of the app include the following:
 <a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
 * Based on the unFlatland series of scripts that make creating 3D views easier
 
-<a href="http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html" target="_blank">Read Me</a> ~
+<a href="http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-features/readme.md#" target="_blank">Read Me</a> ~
 <a href="https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features" target="_blank">Source Code</a> 
 
 Credits: <a href="http://threejs.org" target="_blank">three.js</a> - 

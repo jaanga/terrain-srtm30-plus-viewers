@@ -35,6 +35,7 @@ The demo is built up from three files:
 
 ## Road Map
 
+* Add shade and shadows
 * Permalinks
 * Mouse over height map image provides readout of altitude/depth at cursor position
 * Gazetteer data to be displayed as points, lines and polygons - not just points

@@ -42,7 +42,7 @@ The demo is built up from three files:
 
 &raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
 
-Very simple, basic script. Start here to see how easy it is to begin coding.
+Very simple, basic script. Start here to see how easy it is to begin coding your own 3D Maps.
 
 
 ## 3D Hello Globe
@@ -55,7 +55,7 @@ A first pass at building a 3D globe.
 
 &raquo; [10 Degree Bitmap]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
 
-A wor-in-progress. Images may take twenty seconds or so to load the first time.
+A work-in-progress. Images may take twenty seconds or so to load the first time.
 
 
 
