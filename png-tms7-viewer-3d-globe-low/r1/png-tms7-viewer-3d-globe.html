@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Globe R1</title>
+<title>Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Globe Low Resolution R1.1</title>
 <meta charset=utf-8 />
 <meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
 </head>
@@ -11,6 +11,12 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
 
+	var scale = 25;
+	var sphere;
+
+	var startTime = performance.now();
+	var delayTime = 2000;
+	var autoRotateSpeed = 0.2;
 
 	var srcImage = '../../../terrain-srtm30-plus-data-tms-1-7/0/0-512x256.png';
 
@@ -18,6 +24,7 @@
 	var geometry, material, mesh, axisHelper;
 
 	var heightMap, canvasHeightMap, contextHeightMap;
+
 	init();
 	animate();
 
@@ -27,9 +34,12 @@
 		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' ;
 
 		var info = document.body.appendChild( document.createElement( 'div' ) );
-		info.style.cssText = 'margin: 20px; position: absolute; ';
-		info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
+		info.style.cssText = 'margin: 0 20px; max-width: 200px; position: absolute; ';
+		info.innerHTML = '<a href="" ><h3>' + document.title + '</h3></a>' +
 			'<div id=msg ></div>' +
+			'<p>Auto Rotation <input type=checkbox id=chkRotate checked /></p>' +
+			'<p>Vertical Scale <input type=range id=inpScale min=1 max=50 value=25 step=1 onchange=scale=parseFloat(inpScale.value);updateTerrain(); /></p>' +
+
 		'';
 
 		stats = new Stats();
@@ -40,11 +50,12 @@
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
-		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 20000 );
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 30000 );
 		camera.position.set( 12000, 12000, 12000 );
 
 		controls = new THREE.OrbitControls( camera, renderer.domElement );
-
+		controls.minDistance = 9000;
+		controls.maxDistance = 30000;
 		scene = new THREE.Scene();
 
 // sea level
@@ -61,8 +72,8 @@
 		heightMap = document.createElement( 'img' );
 //		document.body.appendChild( heightMap );
 //		heightMap.style.cssText = 'margin: 20px; position: absolute; top: 0;';
-		heightMap.crossOrigin = 'Anonymous';
-		heightMap.onload = initCanvas;
+		heightMap.crossOrigin = 'anonymous';
+		heightMap.onload = updateTerrain;
 		heightMap.src = srcImage;
 
 		canvasHeightMap = document.createElement( 'canvas' );
@@ -70,9 +81,12 @@
 		canvasHeightMap.height =  256;
 		contextHeightMap = canvasHeightMap.getContext( '2d' );
 
+		controls.autoRotateSpeed = autoRotateSpeed;
+		renderer.domElement.addEventListener( 'mousemove', onMouseMove, false ); // or mousedown?
+
 	}
 
-	function initCanvas() {
+	function updateTerrain() {
 
 		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 512, 256 );
 
@@ -80,7 +94,7 @@
 		var rgb = image.data;
 
 		var elevation;
-		var scale = 0.00002;
+		var scl = 0.000001 * scale;
 
 		var geometry = new THREE.SphereGeometry( 6371, 511, 255, 0, Math.PI * 2, 0.08, 2.98 );
 		var vertices = geometry.vertices;
@@ -92,7 +106,7 @@
 			elevation = elevation < 32767 ? elevation : elevation - 16777216;
 			elevation  = elevation < -11000 ? 0 : elevation ;
 
-			vertices[ j ].multiplyScalar( 1 + scale * elevation );
+			vertices[ j ].multiplyScalar( 1 + scl * elevation );
 
 		}
 
@@ -101,17 +115,31 @@
 
 		var material = new THREE.MeshNormalMaterial(  );
 
-		var sphere = new THREE.Mesh( geometry, material );
+		scene.remove( sphere );
+		sphere = new THREE.Mesh( geometry, material );
 		scene.add( sphere );
 
 	}
 
-	function animate() {
+	function onMouseMove() {
 
-		requestAnimationFrame( animate );
+		startTime = chkRotate.checked ? performance.now() : 1000000 ;
+		controls.autoRotate = false;
+
+	}
+
+	function animate( timestamp ) {
+
+		if ( timestamp - startTime > delayTime ) {
+
+			controls.autoRotate = true;
+
+		}
+
+		renderer.render( scene, camera );
 		controls.update();
 		stats.update();
-		renderer.render( scene, camera );
+		requestAnimationFrame( animate );
 
 	}
 
