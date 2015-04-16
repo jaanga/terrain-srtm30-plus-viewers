@@ -18,7 +18,7 @@ Notes:
 
 ## 3D unFlatland Full Feature
 
-&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D unFlatland]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/r1/png-tms7-viewer-3d-unflatland.html )  
+&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D unFlatland]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/latest/index.html )  
 &raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-unflatland-features )
 
 [Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-features/readme.md# )
