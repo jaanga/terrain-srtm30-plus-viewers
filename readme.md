@@ -18,24 +18,24 @@ Notes:
 
 ## 3D unFlatland Full Feature
 
-&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )  
-&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features )
+&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/r1/png-tms7-viewer-3d.html )  
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-unflatland-features )
 
-[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-features/readme.md# )
+[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-features/readme.md# )
 
 A full featured viewer. Displays terrain as if the Earth is a plane. Start here to explore the possibilities of news ways of visualizing digital elevation models.
 
 Currently the most worked-out, well-developed viewer.
 
 The name unFlatland is a play on the [Flatland: A Romance of Many Dimensions]( http://en.wikipedia.org/wiki/Flatland ) a satirical novella written in 1884. 
-The title is relevant because though the unFlatland scripts flatten the globe out into a plane the plane ends uo full of bumps and dimples. 
+The title is relevant because though the unFlatland scripts flatten the globe out into a plane the plane ends up full of 3D bumps and dimples. 
 
 ## 3D unFlatland Hello World
 
-&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )  
-&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
+&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-hello-world/r1/png-tms7-viewer-3d-unflatland-hello-world.html )  
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-unflatland-hello-world/r1/png-tms7-viewer-3d-unflatland-hello-world.html )
 
-[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-hello-world/readme.md# )
+[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-hello-world/readme.md# )
 
 Very simple, basic script. Start here to see how easy it is to begin coding your own 3D Maps.
 
