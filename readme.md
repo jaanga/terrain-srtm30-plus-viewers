@@ -52,17 +52,17 @@ A first pass at building a 3D globe. Covers the entire globe.
 
 ## 3D Globe Medium Resolution
 
-&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )  
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-medium/latest/index.html )  
 &raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-medium  )
 
-[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-low/readme.md# )
+[Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-medium/readme.md# )
 
 View only a quarter of the globe but at a higher resolution
 
 
 ## Bitmap
 
-&raquo; [10 Degree Bitmap]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )  
+&raquo; [10 Degree Bitmap]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )  
 &raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-1degree-viewer-bitmap )
 
 [Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-1degree-viewer-bitmap/readme.md# )
