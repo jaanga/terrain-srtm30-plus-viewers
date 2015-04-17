@@ -35,7 +35,7 @@
 		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' ;
 
 		var info = document.body.appendChild( document.createElement( 'div' ) );
-		info.style.cssText = 'margin: 0 20px; max-width: 200px; position: absolute; ';
+		info.style.cssText = ' background-color: #ccc; margin: 0 20px; max-width: 200px; opacity: 0.7; padding: 0 0 0 10px; position: absolute; ';
 		info.innerHTML = '<a href="" ><h3>' + document.title + '</h3></a>' +
 			'<div id=msg ></div>' +
 			'<p>Auto Rotation <input type=checkbox id=chkRotate checked /></p>' +
@@ -99,6 +99,9 @@
 			['Default colors',''],
 			['Elevations','http://fgx.github.io/fgx-globe/textures/Elevation.jpg'],
 			['GLOBALeb3colshade','http://fgx.github.io/fgx-globe/textures/GLOBALeb3colshade.jpg']
+
+//			['world-map-google-satellite','../../../terrain-srtm30-plus-data-tms-1-7/0/world-map-google-satellite.png']
+
 /*
 			['Google Maps Terrain','http://mt1.google.com/vt/lyrs=t&x='],
 			['Google Maps Satellite','http://mt1.google.com/vt/lyrs=s&x='],
