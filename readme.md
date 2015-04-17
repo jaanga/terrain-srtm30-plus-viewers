@@ -33,7 +33,7 @@ The title is relevant because though the unFlatland scripts flatten the globe ou
 ## 3D unFlatland Hello World
 
 &raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D  unFlatland Hello World]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-hello-world/r1/png-tms7-viewer-3d-unflatland-hello-world.html )  
-&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-unflatland-hello-world/r1/png-tms7-viewer-3d-unflatland-hello-world.html )
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/blob/gh-pages/png-tms7-viewer-3d-unflatland-hello-world/ )
 
 [Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-hello-world/readme.md# )
 
@@ -43,7 +43,7 @@ Very simple, basic script. Start here to see how easy it is to begin coding your
 ## 3D Globe Low Resolution
 
 &raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Low Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-low/latest/index.html )  
-&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-low )
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-low/ )
 
 [Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-low/readme.md# )
 
@@ -53,7 +53,7 @@ A first pass at building a 3D globe. Covers the entire globe.
 ## 3D Globe Medium Resolution
 
 &raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-medium/latest/index.html )  
-&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-medium  )
+&raquo; [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-medium/  )
 
 [Read Me]( #http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-medium/readme.md# )
 

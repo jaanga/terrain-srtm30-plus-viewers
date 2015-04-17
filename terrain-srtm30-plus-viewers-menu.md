@@ -10,37 +10,44 @@
 
 ## Introduction (open)
 
-A variety of apps able to open and display the SRTM30 plus data.
+A variety of apps able to open and display SRTM30 Plus data.
 
 
-## 3D Full Feature (open)
+## 3D unFlatland Feature (open)
 
-&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D]( ./png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
+&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D unFlatland]( ./png-tms7-viewer-3d-unflatland-features/latest/index.html  )
 
-[Read Me]( #./png-tms7-viewer-3d-features/readme.md# )
+[Read Me]( #./png-tms7-viewer-3d-unflatland-features/readme.md# )
 
-A full featured viewer. Start here to explore the possibilities
+A full featured viewer. Start here to explore possibilities
 
 
-## 3D Hello World (open)
+## 3D unFlatland Hello World (open)
 
-&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D Hello World]( ./png-tms7-viewer-3d-hello-world/r1/png-tms7-viewer-3d-hello-world.html )
+&raquo; [SRTM 30 PLUS PNG TMS7+ Viewer 3D unFlatland Hello World]( ./png-tms7-viewer-3d-unflatland-hello-world/latest/index.html )
 
-[Read Me]( #./png-tms7-viewer-3d-hello-world/readme.md# )
+[Read Me]( #./png-tms7-viewer-3d-unflatland-hello-world/readme.md# )
 
 Very simple, basic script. Start here to see how easy it is to begin coding.
 
 
-## 3D Hello Globe (open)
+## 3D Globe Low Resolution (open)
 
-&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Low Resolution]( ./png-tms7-viewer-3d-globe-low/latest/index.html )
 
-[Read Me]( #./png-tms7-viewer-3d-globe/readme.md# )
+[Read Me]( #./png-tms7-viewer-3d-globe-low/readme.md# )
 
 
-## Bitmap
+## 3D Globe Medium Resolution (open)
 
-&raquo; [10 Degree Bitmap]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( ./png-tms7-viewer-3d-globe-medium/latest/index.html )
+
+[Read Me]( #./png-tms7-viewer-3d-globe-medium/readme.md# )
+
+
+## 10 Degree Bitmaps (open)
+
+&raquo; [10 Degree Bitmaps]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
 
 [Read Me]( #./png-10degree-viewer-bitmap/readme.md# )
 
