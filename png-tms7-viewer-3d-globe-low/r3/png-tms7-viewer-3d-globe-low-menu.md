@@ -1,7 +1,7 @@
 [Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
 [3D Globe LowRes R3]( png-tms7-viewer-3d-globe-low.html "View SRTM data prepared by the Scripps Institution of Oceanography at UCSD" )
 ===
-Use your pointing device to zoom, pan and rotate.
+Use your pointing device to zoom, pan and rotate the globe.
 
 [Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-medium/r1/png-tms7-viewer-3d-globe-medium.html )   
 [unFlatland SRTM30]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/latest/index.html )  
@@ -24,24 +24,28 @@ Vertical Scale <input type=range id=inpScale min=1 max=50 value=25 step=1 onchan
 
 ## About
 
-Features of the app include the following:
 
-* Fully interactive 3D viewers for data files created by the 
-<a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
-* Based on the unFlatland series of scripts that make creating 3D views easier
+Fully interactive 3D globe viewer for data files created by the 
+[Satellite Geodesy research group at Scripps Institution of Oceanography, UCSD]( http://topex.ucsd.edu/WWW_html/srtm30_plus.html )
 
-<a href="http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-features/readme.md#" target="_blank">Read Me</a> ~
-<a href="https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features" target="_blank">Source Code</a> 
+### Overlays
+['Elevation']( http://commons.wikimedia.org/wiki/File:Elevation.jpg ) is from Wikimedia. 
 
-Credits: <a href="http://threejs.org" target="_blank">three.js</a> - 
-<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - 
-<a href="http://jaanga.github.io" target="_blank">jaanga</a>
+[GLOBALeb3colshade.jpg]( http://www.ngdc.noaa.gov/mgg/topo/pictures/ ) is from the [NOAA National Geophysical Data Center (NGDC)]( http://www.ngdc.noaa.gov/ngdc.html )
+
+
+[Read Me]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-low/readme.md# ) ~
+[Source Code]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-low/ ) 
+
+Credits: [three.js]( http://threejs.org ) [webgl]( http://khronos.org/webgl/ ) [jaanga]( http://jaanga.github.io )
 
 copyright &copy; 2015 Jaanga authors  
 MIT license
 
+<!--
 ## Messages
 
 <div id=msg ></div>
 <div id=msg1 ></div>
 <div id=msg2 ></div>
+-->
