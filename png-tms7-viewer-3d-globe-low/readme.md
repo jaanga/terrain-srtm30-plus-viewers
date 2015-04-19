@@ -22,6 +22,7 @@ Provides low resolution data obtained from a 512 x 256 PNG height map or about 1
 
 ## Road  Map
 
+* Draw polylines and polygons
 * Sea level height and opacity adjustments
 * Equator 
 * Latitude/longitude indicators

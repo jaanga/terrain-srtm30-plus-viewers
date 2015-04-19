@@ -24,7 +24,6 @@ Vertical Scale <input type=range id=inpScale min=1 max=50 value=25 step=1 onchan
 
 ## About
 
-
 Fully interactive 3D globe viewer for data files created by the 
 [Satellite Geodesy research group at Scripps Institution of Oceanography, UCSD]( http://topex.ucsd.edu/WWW_html/srtm30_plus.html )
 
@@ -42,10 +41,12 @@ Credits: [three.js]( http://threejs.org ) [webgl]( http://khronos.org/webgl/ ) [
 copyright &copy; 2015 Jaanga authors  
 MIT license
 
-<!--
-## Messages
+
+## Legend
+
+For 'Elevation' overlay:  
+![legend]( http://jaanga.github.io/terrain-r2/images/Elevationscale.JPG )
 
 <div id=msg ></div>
 <div id=msg1 ></div>
 <div id=msg2 ></div>
--->

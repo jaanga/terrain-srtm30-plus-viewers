@@ -12,6 +12,21 @@
 
 A variety of apps able to open and display SRTM30 Plus data.
 
+## 3D Globe Low Resolution (open)
+
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Low Resolution]( ./png-tms7-viewer-3d-globe-low/latest/index.html )
+
+[Read Me]( #./png-tms7-viewer-3d-globe-low/readme.md# )
+
+A fun place to start.
+
+## 3D Globe Medium Resolution (open)
+
+&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( ./png-tms7-viewer-3d-globe-medium/latest/index.html )
+
+[Read Me]( #./png-tms7-viewer-3d-globe-medium/readme.md# )
+
+A work-in-progress
 
 ## 3D unFlatland Feature (open)
 
@@ -19,7 +34,7 @@ A variety of apps able to open and display SRTM30 Plus data.
 
 [Read Me]( #./png-tms7-viewer-3d-unflatland-features/readme.md# )
 
-A full featured viewer. Start here to explore possibilities
+A full featured viewer. Explore the possibilities of 3D maps...
 
 
 ## 3D unFlatland Hello World (open)
@@ -31,25 +46,14 @@ A full featured viewer. Start here to explore possibilities
 Very simple, basic script. Start here to see how easy it is to begin coding.
 
 
-## 3D Globe Low Resolution (open)
-
-&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Low Resolution]( ./png-tms7-viewer-3d-globe-low/latest/index.html )
-
-[Read Me]( #./png-tms7-viewer-3d-globe-low/readme.md# )
-
-
-## 3D Globe Medium Resolution (open)
-
-&raquo; [SRTM30 Plus PNG TM7+ Viewer 3D Globe Medium Resolution]( ./png-tms7-viewer-3d-globe-medium/latest/index.html )
-
-[Read Me]( #./png-tms7-viewer-3d-globe-medium/readme.md# )
-
 
 ## 10 Degree Bitmaps (open)
 
 &raquo; [10 Degree Bitmaps]( ./png-10degree-viewer-bitmap/r1/template-png-10degree-viewer-bitmap.html )
 
 [Read Me]( #./png-10degree-viewer-bitmap/readme.md# )
+
+View the height maps directly.
 
 
 
