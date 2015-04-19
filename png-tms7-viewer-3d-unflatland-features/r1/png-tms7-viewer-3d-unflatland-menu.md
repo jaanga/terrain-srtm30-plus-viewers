@@ -1,6 +1,7 @@
 [Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../../../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
 [3D unFlatland]( png-tms7-viewer-3d-unflatland.html "View SRTM data prepared by the Scripps Institution of Oceanography at UCSD" )
 ===
+[3D Globe]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-low/r2/png-tms7-viewer-3d-globe-low.html )
 
 ## Height Map
 
