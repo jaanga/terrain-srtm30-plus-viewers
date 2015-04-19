@@ -12,6 +12,13 @@ Use your pointing device to zoom, pan and rotate the globe.
 
 Map overlay: <select id=selMap onchange=ifr.contentWindow.setTextureMapOverlays() /></select>
 
+## Sea Level (open)
+
+Sea Level Adjustment  
+<input type=range id=inpLevel min=-10 max=10 value=0 step=1 onchange=ifr.contentWindow.setSeaLevelAdjustment(); title="Adjust the sea level by up to +/- ten meters" />  
+Sea Level Opacity  
+<input type=range id=inpOpacity min=0.1 max=1 value=0.6 step=0.05 onchange=ifr.contentWindow.setSeaLevelOpacity(); />
+
 
 ## Preferences (open)
 

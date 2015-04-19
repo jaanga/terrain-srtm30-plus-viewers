@@ -103,8 +103,8 @@
 	function setSeaLevelAdjustment() {
 
 		scene.remove( seaLevel );
-		geometry = new THREE.SphereGeometry( 6371 + parseFloat( inpLevel.value ), 50, 30 );
-		material = new THREE.MeshBasicMaterial( { color: 0x88aa88, opacity: parseFloat( inpOpacity.value ), side: 2, transparent: true } );
+		geometry = new THREE.SphereGeometry( 6371 + parseFloat( parent.inpLevel.value ), 50, 30 );
+		material = new THREE.MeshBasicMaterial( { color: 0x88aa88, opacity: parseFloat( parent.inpOpacity.value ), side: 2, transparent: true } );
 		seaLevel = new THREE.Mesh( geometry, material );
 		scene.add( seaLevel );
 
@@ -113,7 +113,7 @@
 
 	function setSeaLevelOpacity() {
 
-		seaLevel.material.opacity = parseFloat( inpOpacity.value );
+		seaLevel.material.opacity = parseFloat( parent.inpOpacity.value );
 		seaLevel.material.needsUpdate = true;
 	}
 
