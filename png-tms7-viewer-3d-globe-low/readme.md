@@ -1,4 +1,4 @@
-Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Globe Low Read Me
+Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Globe Low Resolution Read Me
 ===
 
 [SRTM30 Plus PNG TM7+ Viewer 3D Globe]( ./png-tms7-viewer-3d-globe/r1/png-tms7-viewer-3d-globe.html )  

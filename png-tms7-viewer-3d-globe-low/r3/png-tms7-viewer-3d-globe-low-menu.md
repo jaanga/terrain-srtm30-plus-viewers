@@ -3,9 +3,11 @@
 ===
 Use your pointing device to zoom, pan and rotate.
 
-[Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-medium/r1/png-tms7-viewer-3d-globe-medium.html )  
-[unFlatland SRTM30]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-hello-world/latest/index.html )
-[unFlatland USGS 1 Second]( )
+[Medium Resolution]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-medium/r1/png-tms7-viewer-3d-globe-medium.html )   
+[unFlatland SRTM30]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/latest/index.html )  
+[unFlatland USGS 1 Second]( http://jaanga.github.io/terrain-usgs-viewers/png-usgs-viewer-3d-unflatland/r1/png-usgs-viewer-3d-unflatland.html )
+
+
 ## Overlays (open)
 
 Map overlay: <select id=selMap onchange=ifr.contentWindow.setTextureMapOverlays() /></select>
