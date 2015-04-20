@@ -1,27 +1,18 @@
-SRTM30 Plus to PNG TMS7 Viewer 3D Read Me
+Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D unFlatland Read Me
 ===
 
-<span style=display:none; >[View as web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html "view the files as apps." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" ></span>  
+<span style=display:none; >[View as web page]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-features/readme.md# "view the files as a web app." ) <input value="<< You are here" size=15 style="font:bold 11pt monospace;border-width:0;" ></span>  
 
-[Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D Full Feature]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-features/r1/png-tms7-viewer-3d.html )
+Latest release: [Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D unFlatland]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-unflatland-features/latest/index.html )  
+[Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-unflatland-features/ )  
+[FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# )
 
 ## Concept
 
 View the Scripps SRTM 30 Plus data in 3D
 
 
-The demo is built up from three files:
-
-* png-tms7-viewer-3d.html
-	* The container that reads the content file and the menu file
-	* Could be built using jQuery or any other UI library
-* png-tms7-viewer-3d-menu.md
-	* Menu file created using Markdown syntax
-* template-png-tms7-viewer-3d.html
-	* Standalone file to be loaded within an iframe
-	* Loads, contains and process all 3D interaction
-	* Completely workable when not in an iframe
-	* Enables two-communication with parent when within an iframe
+## Features
  
 ## Issues
 

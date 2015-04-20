@@ -3,12 +3,10 @@
 ===
 
 
-[Jaanga Terrain SRTM30 Plus Viewers Read Me]( #./readme.md# )
+[Jaanga Terrain SRTM30 Plus Viewers Read Me]( #./readme.md# )  
+[FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# )  
 
 &raquo; [Jaanga Terrain source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/ "View files with GitHub" ) <scan style=display:none ><< You are here</scan>  
-
-
-## Introduction (open)
 
 A variety of apps able to open and display SRTM30 Plus data.
 
