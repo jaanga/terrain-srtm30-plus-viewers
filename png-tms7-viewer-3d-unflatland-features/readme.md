@@ -16,11 +16,24 @@ View the Scripps SRTM 30 Plus data in 3D
 A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
 
 
-
 ## Features
- 
+
+* Access the entire globe with an accuracy of 120 pixels per degree (~ 1kn per pixel ).
+* Zoom, pand and rotate in real-time
+* Access two click-and-go gazetteers
+	* Golembeck with over 2,000 city location
+	* GEBCO with over 3,000 undersea locations
+* Seven levels of zoom
+* Click-and-go location map
+* Overlays with real maps
+* Display placards with place names
+* Display grid and axis 
+* Adjust vertical scale
+* And much more
+
 ## Issues
 
+* heightmap displays gazetteer locations in wrong position
 * NSEW arrow buttons create errors at edge of world
 	* Should just continue going seamlessly
 * Vertical scale could go even lower
