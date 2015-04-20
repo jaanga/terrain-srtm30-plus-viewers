@@ -16,9 +16,11 @@ Provides low resolution data obtained from a 512 x 256 PNG height map or about 1
 * Fully interactive 3D globe with zoom, pan and rotate using pointing device
 * Bitmap overlays
 * Adjust vertical scale
+* Raise and lower the sea level
+* Set the opacity of the seal level
 * Toggle auto-rotation
 * Display axis
-* Links to other data viz scrips with higher resolution
+* Links to other data viz scripts with higher resolution
 
 ## Road  Map
 
