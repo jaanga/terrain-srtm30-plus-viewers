@@ -40,7 +40,7 @@ Fully interactive 3D globe viewer for data files created by the
 [GLOBALeb3colshade.jpg]( http://www.ngdc.noaa.gov/mgg/topo/pictures/ ) is from the [NOAA National Geophysical Data Center (NGDC)]( http://www.ngdc.noaa.gov/ngdc.html )
 
 
-[Read Me]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-low/readme.md# ) ~
+[FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# ) ~ [Read Me]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-globe-low/readme.md# ) ~
 [Source Code]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-low/ ) 
 
 Credits: [three.js]( http://threejs.org ) [webgl]( http://khronos.org/webgl/ ) [jaanga]( http://jaanga.github.io )
