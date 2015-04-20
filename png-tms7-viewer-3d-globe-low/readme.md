@@ -7,9 +7,15 @@ Latest release: [SRTM30 Plus PNG TM7+ Viewer 3D Globe Low Resolution]( http://ja
 [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-globe-low/ )
 [FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# )
 
-A fully interactive 3D globe viewer for SRTM30 Plus data files created by the <a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
+Want a new feature? Have an issue? Send a message to jaanga [at] googlegroups [dot] com
 
-Provides low resolution data obtained from a 512 x 256 PNG height map or about 1 data point for every 1.4 degrees.
+## Concept
+
+To provide a fully interactive 3D globe viewer for data files created by the 
+[Satellite Geodesy research group at Scripps Institution of Oceanography, UCSD]( http://topex.ucsd.edu/WWW_html/srtm30_plus.html )
+
+Provides low resolution data obtained from a 512 x 256 PNG height map ( or about 1 data point for every 1.4 degrees) 
+from data extracted from the much larger SRTM30 Plus data set.
 
 ## Features
 
@@ -24,6 +30,7 @@ Provides low resolution data obtained from a 512 x 256 PNG height map or about 1
 
 ## Road  Map
 
+* Increase the visible resolution
 * Draw polylines and polygons
 * Sea level height and opacity adjustments
 * Equator 

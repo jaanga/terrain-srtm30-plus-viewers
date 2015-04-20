@@ -51,21 +51,34 @@ Vertical scale: <input type=range id=inpScale onchange=ifr.contentWindow.scale=p
 
 ## About
 
-Features of the app include the following:
+Fully interactive 3D globe viewer for data files created by the 
+[Satellite Geodesy research group at Scripps Institution of Oceanography, UCSD]( http://topex.ucsd.edu/WWW_html/srtm30_plus.html )
 
-* Fully interactive 3D viewers for data files created by the 
-<a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
-* Based on the unFlatland series of scripts that make creating 3D views easier
 
-<a href="http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-features/readme.md#" target="_blank">Read Me</a> ~
-<a href="https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-features" target="_blank">Source Code</a> 
+[FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# ) ~ 
+[Read Me]( http://jaanga.github.io/terrain-srtm30-plus-viewers/terrain-srtm30-plus-viewers.html#./png-tms7-viewer-3d-unflatland-features/readme.md# ) ~
+[Source Code]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-unflatland-features ) 
 
-Credits: <a href="http://threejs.org" target="_blank">three.js</a> - 
-<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - 
-<a href="http://jaanga.github.io" target="_blank">jaanga</a>
+### Gazetteers
+
+[Golembeck]( http://www.golombek.com/locations.html ) [GEBCO]( http://www.gebco.net/data_and_products/undersea_feature_names/ )
+
+### Overlays
+Map overlay image tiles are courtesy of:
+
+[OpenStreetMap]( https://www.openstreetmap.org/ )
+[Google Maps]( https://www.google.com/maps/ )  
+[OpenCycleMap]( http://www.opencyclemap.org/ )
+[MapQuest]( http://www.mapquest.com/ )
+[Stamen]( http://stamen.com/ )
+
+### Code
+
+[three.js]( http://threejs.org ) [webgl]( http://khronos.org/webgl/ ) [jaanga]( http://jaanga.github.io )
 
 copyright &copy; 2015 Jaanga authors  
 MIT license
+
 
 ## Messages
 

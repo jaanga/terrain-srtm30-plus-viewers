@@ -7,9 +7,14 @@ Latest release: [Jaanga Terrain SRTM30 Plus PNG TMS7 Viewer 3D unFlatland]( http
 [Source code on GitHub]( https://github.com/jaanga/terrain-srtm30-plus-viewers/tree/gh-pages/png-tms7-viewer-3d-unflatland-features/ )  
 [FAQ]( http://jaanga.github.io/terrain-r2/terrain.html#faq.md# )
 
+Want a new feature? Have an issue? Send a message to jaanga [at] googlegroups [dot] com
+
 ## Concept
 
 View the Scripps SRTM 30 Plus data in 3D
+
+A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a href=http://topex.ucsd.edu/WWW_html/srtm30_plus.html  target="_blank" >Satellite Geodesy research group at Scripps Institution of Oceanography, University of California San Diego</a> 
+
 
 
 ## Features
