@@ -202,7 +202,6 @@
 //				srcDir = '../../../terrain-srtm30-plus-data-tms-7plus' + '/';
 //				srcDir = 'c:/temp/srtm-png-tms-1-7-temp/7plus/';
 
-				srcDir = 'C:\Users\Theo\Dropbox\Public\git-repos\jaanga-terrain\terrain-srtm30-plus-data-tms-7plus/7plus/'
 				srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-7plus/' + '7plus' + '/';
 
 			} else  {
@@ -789,6 +788,7 @@ console.log( 'p', p );
 
 			elevation = ( elevation < 32768 ) ? elevation : elevation - 16777215;
 
+
 /*
 // Uncomment to see the crazy numbers
 
@@ -801,11 +801,10 @@ console.log( 'p', p );
 
 			elevation  = elevation < -11000 ? 0 : elevation ; // Marianas trench
 
-			max = elevation > max ? elevation : max;
-			min = elevation < min ? elevation : min;
+//			max = elevation > max ? elevation : max;
+//			min = elevation < min ? elevation : min;
 
 			vertices[ j ] = scl * elevation ;
-//			elevations.push( elevation );
 
 		}
 
