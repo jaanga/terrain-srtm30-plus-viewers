@@ -52,6 +52,10 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Change Log
 
+2015-04-25 ~ Theo
+
+* Fix terrain not zooming issue
+
 2015-03-29 ~ Theo
 
 * Add Click on location map to go there
