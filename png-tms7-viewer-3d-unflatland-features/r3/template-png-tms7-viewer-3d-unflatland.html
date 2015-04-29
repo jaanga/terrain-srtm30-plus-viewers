@@ -284,7 +284,7 @@
 		lat = parseInt( parent.selLat.value, 10 );
 		lon = parseInt( parent.selLon.value, 10 ) + 1;
 console.log( 'pl', lat, lon );
-		location.hash = zoom + '#' + lat + '#' + lon;
+		parent.location.hash = zoom + '#' + lat + '#' + lon;
 
 	}
 
