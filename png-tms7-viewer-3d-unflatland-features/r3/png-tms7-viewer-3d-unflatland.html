@@ -227,6 +227,14 @@
 
 	}
 
+	function setPermalinkTop() {
+
+		lat = parseInt( parent.selLat.value, 10 );
+		lon = parseInt( parent.selLon.value, 10 ) + 1;
+console.log( 'pl-top', lat, lon );
+		location.hash = ifr.contentWindow.zoom + '#' + lat + '#' + lon;
+
+	}
 </script>
 </body>
 </html>
