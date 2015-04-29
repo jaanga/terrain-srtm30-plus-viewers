@@ -33,7 +33,7 @@ Go: <button onclick=ifr.contentWindow.tileWest(); title="Go west" >&#8678;</butt
 <button onclick=ifr.contentWindow.tileNorth(); title="Go north" >&#8679;</button> 
 <button onclick=ifr.contentWindow.tileSouth(); title="Go south" >&#8681;</button> 
 
-<button onclick=ifr.contentWindow.setPermalink() >Create Permalink</button>
+<button onclick=ifr.contentWindow.setPermalink(); >Create Permalink</button>
 
 ## Overlays (open)
 
