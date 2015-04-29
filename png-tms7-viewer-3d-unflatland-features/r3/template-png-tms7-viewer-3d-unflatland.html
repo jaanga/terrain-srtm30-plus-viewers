@@ -97,7 +97,9 @@
 
 					'<button onclick=tileNorth(); title="Go north" >&#8679;</button> ' +
 					'<button onclick=tileSouth(); title="Go south" >&#8681;</button> ' +
-				'</p><p>' +
+				'</p>' +
+				'<p><button onclick=setPermalink() >Create Permalink</button></p>' +
+				'<p>' +
 					'Map overlay: <select id=selMap onchange=setMapOverlay(); /></select>' +
 				'</p><p>' +
 					'Vertical scale: <input type=range id=inpScale onchange=scale=parseFloat(this.value);initCanvas(); min=0.1 max=30 step=0.1 value=' + scale + ' /></select>' +
@@ -116,7 +118,7 @@
 		getZoom();
 		getGazetteerGolembek();
 //		getGazetteerGEBCO();
-		getLatLonOptions();
+		getLatLonTileOptions();
 		getLocationMap();
 
 //		getTextureMaps();
@@ -175,8 +177,13 @@
 
 			hashes = location.hash.split( '#' );
 			zoom = parseInt( hashes[ 1 ], 10 );
-			lat = parseFloat( hashes[ 2 ] );
-			lon = parseFloat( hashes[ 3 ] );
+
+			lat = latDefault = parseFloat( hashes[ 2 ] );
+			lon = lonDefault = parseFloat( hashes[ 3 ] );
+
+			tileX = lon2tile( lon, zoom );
+			tileY = lat2tile( lat, zoom );
+
 			scale = hashes[ 4 ] ? parseFloat( hashes[ 4 ] ) : scale;
 
 		}
@@ -221,6 +228,7 @@
 			tileX = lon2tile( lon, zoom );
 			tileY = lat2tile( lat, zoom );
 
+//console.log( 'getZoom', lat, lon );
 			getHeightMapSrc( srcDir + tileX + '/' + tileY + '.png', true );
 
 		}
@@ -228,7 +236,7 @@
 	}
 
 
-	function getLatLonOptions() {
+	function getLatLonTileOptions() {
 
 		for ( var i = 0; i < 181; i++ ) {
 
@@ -244,6 +252,8 @@
 
 		}
 
+// tile
+
 		for ( var i = 0; i < Math.pow( 2, zoom ); i++ ) {
 
 			parent.selTileX.appendChild( document.createElement( 'option' ) );
@@ -257,6 +267,24 @@
 			parent.selTileY.children[ i ].text = i;
 
 		}
+
+	}
+
+	function setTileParameters() {
+
+		tileX = parseInt( parent.selTileX.value, 10 );
+		tileY = parseInt( parent.selTileY.value, 10 );
+
+		getHeightMapSrc(  srcDir + tileX + '/' + tileY + '.png' );
+
+	}
+
+	function setPermalink() {
+
+		lat = parseInt( parent.selLat.value, 10 );
+		lon = parseInt( parent.selLon.value, 10 ) + 1;
+
+		location.hash = zoom + '#' + lat + '#' + lon;
 
 	}
 
@@ -416,14 +444,7 @@
 	}
 
 
-	function setTileParameters() {
 
-		tileX = parseInt( parent.selTileX.value, 10 );
-		tileY = parseInt( parent.selTileY.value, 10 );
-
-		getHeightMapSrc(  srcDir + tileX + '/' + tileY + '.png' );
-
-	}
 
 
 	function selectFile() {
@@ -443,6 +464,7 @@
 		startTime = Date.now();
 
 		if ( !gazetteer ) parent.selPlace.selectedIndex = 0;
+
 
 		heightMap.src = fileName;
 

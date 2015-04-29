@@ -36,13 +36,15 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 	* Source height map
 * Display placards with Gazetteer place names and indicated altitude
 * Display grid and axis 
+* Display edges of 3D faces in meshes
 * Adjust vertical scale
-* Permalinks (WIP)
+* Create permalink button
 * Open and view local height maps
 * And much more
 
 ## Issues
 
+* Code needs a clean-up and functions put into a logical arrangement
 * World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
 	* Actual data vs Mercator data issue
@@ -50,6 +52,8 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Road Map
 
+* Add artifact clean-up algorithms
+* Display placard at permalink lat/lon
 * Mobile enable
 * Zoom extents
 * Navigate between tiles using cursor keys
