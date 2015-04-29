@@ -1,5 +1,5 @@
 [Jaanga]( ../../../index.html ) &raquo; [Terrain]( ../../../terrain-r2/terrain.html ) &raquo; [SRTM30 Plus]( ../../terrain-srtm30-plus-viewers.html ) &raquo;
-[3D unFlatland]( png-tms7-viewer-3d-unflatland.html "View SRTM data prepared by the Scripps Institution of Oceanography at UCSD" )
+[3D unFlatland R3]( png-tms7-viewer-3d-unflatland.html "View SRTM data prepared by the Scripps Institution of Oceanography at UCSD" )
 ===
 [3D Globe lowRes]( http://jaanga.github.io/terrain-srtm30-plus-viewers/png-tms7-viewer-3d-globe-low/latest/index.html ) 
 [USGS 1 Second]( http://jaanga.github.io/terrain-usgs-viewers/png-usgs-viewer-3d-unflatland/r1/png-usgs-viewer-3d-unflatland.html )
@@ -38,7 +38,7 @@ Go: <button onclick=ifr.contentWindow.tileWest(); title="Go west" >&#8678;</butt
 
 ## Overlays (open)
 
-Map overlay: <select id=selMap onchange=ifr.contentWindow.setTextureMap() /></select>
+Map overlay: <select id=selMap onchange=ifr.contentWindow.setMapOverlay() /></select>
 
 Vertical scale: <input type=range id=inpScale onchange=ifr.contentWindow.scale=parseFloat(this.value);ifr.contentWindow.initCanvas(); min=1 max=20 step=0.1 value=scale /></select>
 
