@@ -18,25 +18,34 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Features
 
-* Access the entire globe with an accuracy of 120 pixels per degree (~ 1kn per pixel ).
-* Zoom, pand and rotate in real-time
+* Access the entire globe with an accuracy of 120 pixels per degree (~1km per pixel ).
+* Zoom, pan and rotate the display in real-time
+* Navigate between tiles using
+	* Latitude and longitude
+	* TMS X and Y tiles
+	* Clicking on arrow icons
 * Access two click-and-go gazetteers
 	* Golembeck with over 2,000 city location
 	* GEBCO with over 3,000 undersea locations
 * Seven levels of zoom
 * Click-and-go location map
-* Overlays with real maps
-* Display placards with place names
+* 14 Map Overlays including 
+	* Real maps
+	* Color by normalized height
+	* Wireframe
+	* Source height map
+* Display placards with Gazetteer place names and indicated altitude
 * Display grid and axis 
 * Adjust vertical scale
+* Permalinks (WIP)
+* Open and view local height maps
 * And much more
 
 ## Issues
 
-* heightmap displays gazetteer locations in wrong position
+* Navigate between tiles using cursor keys
 * NSEW arrow buttons create errors at edge of world
 	* Should just continue going seamlessly
-* Vertical scale could go even lower
 * World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
 	* Actual data vs Mercator data issue
@@ -45,12 +54,20 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 ## Road Map
 
 * Add shade and shadows
-* Permalinks
+* Add Three.js color look up table
 * Mouse over height map image provides readout of altitude/depth at cursor position
 * Gazetteer data to be displayed as points, lines and polygons - not just points
 
 
 ## Change Log
+
+2015-04-28 Theo
+
+* Add vertex color by normalized height
+* Map overlay extracted into stand alone JavaScript file
+Dealt with
+* Vertical scale could go even lower
+* heightmap displays gazetteer locations in wrong position
 
 2015-04-25 ~ Theo
 

@@ -9,6 +9,8 @@
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+
+<script src=../../../terrain-r2/javascript/get-set-map-overlays/get-set-map-overlays-r1.js ></script>
 <script>
 
 	var selectedLocation = 'San Francisco CA';
@@ -37,7 +39,7 @@
 
 	var heightMap;
 	var canvasTMS, contextTMS;
-	var canvasSRTM, contextSRTM;
+	var canvasHeightMap, contextHeightMap;
 
 	var grid, axis;
 	var gazetteer;
@@ -88,9 +90,9 @@
 					'<button onclick=tileNorth(); title="Go north" >&#8679;</button> ' +
 					'<button onclick=tileSouth(); title="Go south" >&#8681;</button> ' +
 				'</p><p>' +
-					'Map overlay: <select id=selMap onchange=setTextureMap() /></select>' +
+					'Map overlay: <select id=selMap onchange=setMapOverlay(); /></select>' +
 				'</p><p>' +
-					'Vertical scale: <input type=range id=inpScale onchange=scale=parseFloat(this.value);initCanvas(); min=1 max=20 step=0.1 value=scale /></select>' +
+					'Vertical scale: <input type=range id=inpScale onchange=scale=parseFloat(this.value);initCanvas(); min=0.1 max=30 step=0.1 value=' + scale + ' /></select>' +
 				'</p><p>' +
 					'<input type=checkbox id=inpGrid onchange=setHelpers(); checked=true /> Display grid & axis' +
 				'</p><p id=locationMap ></p>' +
@@ -108,7 +110,8 @@
 		getLatLonOptions();
 		getLocationMap();
 
-		getTextureMaps();
+//		getTextureMaps();
+		getMapOverlays();
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -140,9 +143,9 @@
 		heightMap.crossOrigin = 'Anonymous';
 		heightMap.onload = initCanvas;
 
-		canvasSRTM = parent.heightMapHolder.appendChild( document.createElement( 'canvas' ) );
-//		canvasSRTM.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 1200px; z-index: 10; ';
-		contextSRTM = canvasSRTM.getContext( '2d' );
+		canvasHeightMap = parent.heightMapHolder.appendChild( document.createElement( 'canvas' ) );
+//		canvasHeightMap.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 1200px; z-index: 10; ';
+		contextHeightMap = canvasHeightMap.getContext( '2d' );
 
 //		canvasTMS = document.body.appendChild( document.createElement( 'canvas' ) );
 //		canvasTMS.style.cssText = 'border: 1px red solid; position: absolute; top: 0; left: 800px; z-index: 10; ';
@@ -191,7 +194,7 @@
 
 		parent.selZoom.onchange = function() {
 
-//			zoom = levels[ parent.selZoom.selectedIndex ][ 1 ];
+			zoom = levels[ parent.selZoom.selectedIndex ][ 1 ];
 
 			if ( zoom === 7 ) {
 
@@ -381,7 +384,7 @@
 		var place, alt, lat, lon;
 		var ptX, ptY;
 
-		contextSRTM.drawImage( heightMap, 0, 0 );
+		contextHeightMap.drawImage( heightMap, 0, 0 );
 
 		for ( var i = 1, iLen = gazetteer.length; i < iLen; i++ ) {
 
@@ -432,11 +435,11 @@
 //		ptX = heightMap.width * ( lon - ulLon ) / dx;
 //		ptY = heightMap.height * ( ulLat - lat ) / dy;
 
-		p = contextSRTM.getImageData( ptX, ptY, 1, 1 ).data;
+		p = contextHeightMap.getImageData( ptX, ptY, 1, 1 ).data;
 
-		contextSRTM.lineWidth = 3;
-		contextSRTM.strokeStyle =  '#ffff00';
-		contextSRTM.strokeRect( ptX, ptY, 1, 1  );
+		contextHeightMap.lineWidth = 3;
+		contextHeightMap.strokeStyle =  '#ffff00';
+		contextHeightMap.strokeRect( ptX, ptY, 1, 1  );
 
 		elevation = p[ 0 ] + 256 * p[ 1 ] + 65536 * p[ 2 ] ;
 
@@ -656,32 +659,6 @@ console.log( 'p', p );
 	}
 
 
-	function getTextureMaps() {
-
-		mapTypes = [
-			['Default colors',''],
-			['Google Maps','http://mt1.google.com/vt/x='],
-			['Google Maps Terrain','http://mt1.google.com/vt/lyrs=t&x='],
-			['Google Maps Satellite','http://mt1.google.com/vt/lyrs=s&x='],
-			['Google Maps Hybrid','http://mt1.google.com/vt/lyrs=y&x='],
-			['Open Street Map','http://tile.openstreetmap.org/'],
-			['Open Cycle Map', 'http://tile.opencyclemap.org/cycle/'],
-			['MapQuest OSM', 'http://otile3.mqcdn.com/tiles/1.0.0/osm/'],
-			['MapQuest Satellite', 'http://otile3.mqcdn.com/tiles/1.0.0/sat/'],
-			['Stamen terrain background','http://tile.stamen.com/terrain-background/'],
-			['HeightMap','../../../terrain/'],
-			['Wireframe','']
-		];
-
-		for ( var i = 0; i < mapTypes.length; i++ ) {
-
-			parent.selMap.appendChild( document.createElement( 'option' ) );
-			parent.selMap.children[ i ].text = mapTypes[ i ][ 0 ];
-
-		}
-
-	}
-
 
 	function setHelpers() {
 
@@ -752,7 +729,7 @@ console.log( 'p', p );
 
 		heightMap.src = fileName;
 
-		setTextureMap();
+
 
 	}
 
@@ -761,9 +738,9 @@ console.log( 'p', p );
 
 		contextTMS.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 256, 256 );
 
-		canvasSRTM.width =  heightMap.width;
-		canvasSRTM.height =  heightMap.height;
-		contextSRTM.drawImage( heightMap, 0, 0 );
+		canvasHeightMap.width =  heightMap.width;
+		canvasHeightMap.height =  heightMap.height;
+		contextHeightMap.drawImage( heightMap, 0, 0 );
 
 		var image = contextTMS.getImageData( 0, 0, 256, 256 );
 
@@ -785,7 +762,6 @@ console.log( 'p', p );
 			elevation = pix[ i ] + 256 * pix[ i + 1 ] + 65536 * pix[ i + 2 ] ;
 
 			elevation = ( elevation < 32768 ) ? elevation : elevation - 16777215;
-
 
 /*
 // Uncomment to see the crazy numbers
@@ -811,12 +787,13 @@ console.log( 'p', p );
 		geometry.computeFaceNormals();
 		geometry.computeVertexNormals();
 
-		scene.remove( terrainMesh );
+		if ( terrainMesh ) { scene.remove( terrainMesh ); }
 
 		terrainMesh = new THREE.Mesh( geometry, mapMaterial );
 		terrainMesh.scale.z = -1;
 		scene.add( terrainMesh );
 
+		setMapOverlay();
 		setInfo();
 
 	}
@@ -861,80 +838,6 @@ console.log( 'p', p );
 		setLocationMapTarget();
 
 		setPlacards();
-
-	}
-
-
-	function setTextureMap() {
-
-		if ( parent.selMap.selectedIndex === 0 && mapMaterial.type !== 'MeshNormalMaterial'  ) {
-
-			mapMaterial = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
-			mesh.material = mapMaterial;
-			mesh.material.needsUpdate = true;
-
-		} else if ( parent.selMap.selectedIndex > 0 && parent.selMap.selectedIndex < 10 ){
-
-			var dir = mapTypes[ parent.selMap.selectedIndex ][ 1 ]; // 'http://b.tile.openstreetmap.org/';
-			var count = 0;
-
-			var size = 2048;
-			var half = 256;
-
-//			canvasMap = document.body.appendChild( document.createElement( 'canvas' ) );
-//			canvasMap.style.cssText = 'border: 1px solid gray; position: absolute; top: 0; z-index:-10;';
-
-			var canvasMap = document.createElement( 'canvas' );
-			canvasMap.width = canvasMap.height = size;
-			var contextMap = canvasMap.getContext( '2d' );
-
-			for ( var x = 0; x < 8; x++ ) {
-
-				for ( var y = 0; y < 8; y++ ) {
-
-					if ( parent.selMap.selectedIndex < 5 ) {
-
-						loadImage( ( 8 * tileX + x ) + '&y=' + ( 8 * tileY + y ) + '&z=' + ( zoom + 3 ), 256 * x, 256 * y );
-
-					} else {
-
-						loadImage( ( zoom + 3 ) + '/' + ( 8 * tileX + x ) + '/' + ( 8 * tileY + y ) + '.png', 256 * x, 256 * y );
-
-					}
-
-				}
-//console.log(  'z', zoom, 'tilex', ( 4 * tileX + x ), 'y',  ( 4 * tileY + y )  );
-			}
-
-			function loadImage( fileName, x, y ) {
-
-				var img = document.createElement( 'img' );
-				img.crossOrigin = 'Anonymous';
-				img.src = dir + fileName;
-
-				img.onload = function(){
-
-					contextMap.drawImage( img, 0, 0, 256, 256, x, y, 256, 256 );
-
-					if ( ++count === 64 ) {
-
-						var texture = new THREE.Texture( canvasMap );
-//						texture.minFilter = texture.magFilter = THREE.NearestFilter;
-						texture.needsUpdate = true;
-
-						mapMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, map: texture, shading: THREE.SmoothShading, side: 2 } );
-						terrainMesh.material = mapMaterial;
-						terrainMesh.material.needsUpdate = true;
-
-					}
-
-				}
-
-			}
-
-		} else {
-
-		}
 
 	}
 
