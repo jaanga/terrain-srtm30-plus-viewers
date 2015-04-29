@@ -43,9 +43,6 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Issues
 
-* Navigate between tiles using cursor keys
-* NSEW arrow buttons create errors at edge of world
-	* Should just continue going seamlessly
 * World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
 	* Actual data vs Mercator data issue
@@ -53,13 +50,23 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Road Map
 
-* Add shade and shadows
+* Mobile enable
+* Zoom extents
+* Navigate between tiles using cursor keys
+* Add first person camera
+* Add shade and shadows toggle
 * Add Three.js color look up table
-* Mouse over height map image provides readout of altitude/depth at cursor position
+* Mouse over height map image provides readout of altitude/depth and lat/lon at cursor position
 * Gazetteer data to be displayed as points, lines and polygons - not just points
 
 
 ## Change Log
+
+2015-04-29 ~ Theo
+
+Dealt with
+* NSEW arrow buttons create errors at edge of world
+	* Should just continue going seamlessly
 
 2015-04-28 Theo
 

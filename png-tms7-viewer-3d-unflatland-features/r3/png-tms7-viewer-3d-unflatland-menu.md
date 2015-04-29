@@ -42,7 +42,8 @@ Map overlay: <select id=selMap onchange=ifr.contentWindow.setMapOverlay() /></se
 
 Vertical scale: <input type=range id=inpScale onchange=ifr.contentWindow.scale=parseFloat(this.value);ifr.contentWindow.initCanvas(); min=1 max=20 step=0.1 value=scale /></select>
 
-<input type=checkbox id=inpGrid onchange=ifr.contentWindow.setHelpers(); checked=true /> Display grid & axis
+<input type=checkbox id=inpGrid onchange=ifr.contentWindow.setHelpers(); checked=true /> Display grid & axis  
+<input type=checkbox id=inpEdges onchange=ifr.contentWindow.setEdges(); /> Display edges
 
 ## Location Map (open)
 
