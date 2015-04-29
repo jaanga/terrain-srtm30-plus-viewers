@@ -98,7 +98,7 @@
 					'<button onclick=tileNorth(); title="Go north" >&#8679;</button> ' +
 					'<button onclick=tileSouth(); title="Go south" >&#8681;</button> ' +
 				'</p>' +
-				'<p><button onclick=setPermalink() >Create Permalink</button></p>' +
+				'<p><button onclick=setPermalink(); >Create Permalink</button></p>' +
 				'<p>' +
 					'Map overlay: <select id=selMap onchange=setMapOverlay(); /></select>' +
 				'</p><p>' +
@@ -283,7 +283,7 @@
 
 		lat = parseInt( parent.selLat.value, 10 );
 		lon = parseInt( parent.selLon.value, 10 ) + 1;
-
+console.log( 'pl', lat, lon );
 		location.hash = zoom + '#' + lat + '#' + lon;
 
 	}
