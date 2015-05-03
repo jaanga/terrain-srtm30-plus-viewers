@@ -29,6 +29,7 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 	* GEBCO with over 3,000 undersea locations
 * Seven levels of zoom
 * Click-and-go location map
+* Click on map to display heads-up placard with latitude, longitude and elevation
 * 14 Map Overlays including 
 	* Real maps
 	* Color by normalized height
@@ -53,13 +54,14 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 ## Road Map
 
 * Add artifact clean-up algorithms
-* Display placard at permalink lat/lon
+
 * Mobile enable
 * Zoom extents
 * Navigate between tiles using cursor keys
 * Add first person camera
 * Add shade and shadows toggle
 * Add Three.js color look up table
+* Display placard at permaink lat/lon
 * Mouse over height map image provides readout of altitude/depth and lat/lon at cursor position
 * Gazetteer data to be displayed as points, lines and polygons - not just points
 
