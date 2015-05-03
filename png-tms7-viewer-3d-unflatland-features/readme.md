@@ -45,8 +45,7 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Issues
 
-* Placard and heightmap elevations are mis-alining / giving faulty read outs  
-* Code needs a clean-up and functions put into a logical arrangement
+
 * World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
 	* Actual data vs Mercator data issue
@@ -55,12 +54,11 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 ## Road Map
 
 * Add artifact clean-up algorithms
-
+* Add first person camera
+* Add shade and shadows toggle
 * Mobile enable
 * Zoom extents
 * Navigate between tiles using cursor keys
-* Add first person camera
-* Add shade and shadows toggle
 * Add Three.js color look up table
 * Display placard at permaink lat/lon
 * Mouse over height map image provides readout of altitude/depth and lat/lon at cursor position
@@ -68,6 +66,17 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 
 ## Change Log
+
+2015-05-03 ~ Theo
+
+* R5
+* minor code clead-up
+* Fix: Placard and heightmap elevations are mis-aligning / giving faulty read outs  
+* Code needs a clean-up and functions put into a logical arrangement
+
+2015-05-02 ~ 
+
+* Add heads-up
 
 2015-04-29 ~ Theo
 
