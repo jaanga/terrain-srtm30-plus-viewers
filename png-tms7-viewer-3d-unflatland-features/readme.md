@@ -45,6 +45,7 @@ A fully interactive 3D data viewer for SRTM30 Plus data files created by the <a 
 
 ## Issues
 
+* Placard and heightmap elevations are mis-alining / giving faulty read outs  
 * Code needs a clean-up and functions put into a logical arrangement
 * World location map does not load all 4 images the first time
 * Overlay mis-registration at low zoom levels
