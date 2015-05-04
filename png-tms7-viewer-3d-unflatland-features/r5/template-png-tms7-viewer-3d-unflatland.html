@@ -565,7 +565,8 @@ console.log( 'pl', lat, lon );
 		var elevation;
 		var elevations = [];
 
-		min = max = 0;
+		min = 9000;
+		max = -11000;
 
 		var scl = 0.001 * scale;
 
@@ -587,14 +588,12 @@ console.log( 'pl', lat, lon );
 
 			elevation  = elevation < -11000 ? 0 : elevation ; // Marianas trench
 
-//			max = elevation > max ? elevation : max;
-//			min = elevation < min ? elevation : min;
+			max = elevation > max ? elevation : max;
+			min = elevation < min ? elevation : min;
 
 			vertices[ j ] = scl * elevation ;
 
 		}
-
-//console.log( '\nmin', min, 'max', max  );
 
 		geometry.computeFaceNormals();
 		geometry.computeVertexNormals();
