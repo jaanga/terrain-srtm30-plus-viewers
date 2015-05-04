@@ -206,8 +206,8 @@
 		raycaster = new THREE.Raycaster();
 		mouse = new THREE.Vector2();
 
-		document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-		document.addEventListener( 'touchstart', onDocumentTouchStart, false ); // for mobile
+		renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+		renderer.domElement.addEventListener( 'touchstart', onDocumentTouchStart, false ); // for mobile
 
 
 	}
