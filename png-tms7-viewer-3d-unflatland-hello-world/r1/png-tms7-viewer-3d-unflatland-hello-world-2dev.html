@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Jaanga Terrain SETM30 Plus PNG TMS7 Viewer 3D Hello World R2dev</title>
+<meta charset=utf-8 />
+<meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script>
+
+	var zoom = 7;
+	var tileX = 20;
+	var tileY = 49;
+
+//	srcDir = 'http://jaanga.github.io/terrain-srtm30-plus-data-tms-7plus/7plus/';
+	srcDir = 'c:/temp/srtm-png-tms-1-7-temp/'
+
+	var stats, renderer, scene, camera, controls;
+	var geometry, material, mesh, axisHelper;
+
+	var heightMap, canvasHeightMap, contextHeightMap;
+
+	init();
+	animate();
+
+	function init() {
+
+		var css = document.head.appendChild( document.createElement('style') );
+		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' ;
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = 'margin: 20px; position: absolute; ';
+		info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
+			'<div id=msg ></div>' +
+		'';
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
+		document.body.appendChild( stats.domElement );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+		scene = new THREE.Scene();
+
+// axes
+		var axisHelper = new THREE.AxisHelper( 50 );
+		scene.add( axisHelper );
+
+// sea level
+		geometry = new THREE.PlaneBufferGeometry( 255, 255 );
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+		material = new THREE.MeshNormalMaterial( { opacity: 0.5, side: 2, transparent: true } );
+		seaMesh = new THREE.Mesh( geometry, material );
+		scene.add( seaMesh );
+
+//
+		heightMap = document.createElement( 'img' );
+		heightMap.crossOrigin = 'Anonymous';
+		heightMap.onload = initCanvas;
+		heightMap.src = srcDir + tileX + '/' + tileY + '.png';
+
+		canvasHeightMap = document.createElement( 'canvas' );
+//		canvasHeightMap.width = canvasHeightMap.height =  256;
+
+		contextHeightMap = canvasHeightMap.getContext( '2d' );
+
+	}
+
+
+	function initCanvas() {
+		canvasHeightMap.width = heightMap.width;
+		canvasHeightMap.height =  heightMap.height;
+
+//		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height, 0, 0, 256, 256 );
+		contextHeightMap.drawImage( heightMap, 0, 0, heightMap.width, heightMap.height );
+
+		var image = contextHeightMap.getImageData( 0, 0, heightMap.width, heightMap.height );
+		var rgba = image.data;
+
+		var geometry = new THREE.PlaneBufferGeometry( 256, 256, heightMap.width - 1, heightMap.height - 1  );
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0.5 * Math.PI ) );
+
+		var vertices = geometry.attributes.position.array;
+		var elevation;
+		var scl = 0.008;
+
+		for ( var i = 0, j = 1; i < rgba.length; i += 4, j += 3 ) {
+
+			elevation = rgba[ i ] + 256 * rgba[ i + 1 ];
+			elevation = elevation < 32768 ? elevation : elevation - 65536;
+
+			vertices[ j ] = scl * elevation ;
+
+		}
+
+		geometry.computeFaceNormals();
+		geometry.computeVertexNormals();
+
+		var material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
+
+		var mesh = new THREE.Mesh( geometry, material );
+		mesh.scale.z = -1;
+		scene.add( mesh );
+
+	}
+
+	function animate() {
+
+		requestAnimationFrame( animate );
+		controls.update();
+		stats.update();
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+</body>
+</html>
