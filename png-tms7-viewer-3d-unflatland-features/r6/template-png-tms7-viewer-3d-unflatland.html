@@ -702,7 +702,7 @@ console.log( 'pl', lat, lon );
 
 			headsUp.innerHTML  = '<h3 style="margin:0;" >Point data</h3>' +
 				'Latitude:' + ptLat.toFixed( 2 ) /* + ' pt:' + intersects[0].point.z  */  + '<br>' +
-				'Longitude:' +ptLon.toFixed( 2 ) + '<br>' +
+				'Longitude:' + ptLon.toFixed( 2 ) + '<br>' +
 				'Elevation: ' + ( intersects[0].point.y / 0.001 / scale ).toFixed( 0 ) + '<br>' +
 
 			'';
@@ -718,6 +718,8 @@ console.log( 'pl', lat, lon );
 		}
 
 	}
+
+
 	function v( x, y, z ){ return new THREE.Vector3( x, y, z ); }
 
 	function animate() {
